@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: "Quicksand", sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 1399px) {
+            body {
+                background-image: url('Images/imgi_12_auth-bg.svg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+
+            .desktop-map-container {
+                display: none;
+            }
+
+            .content-card {
+                margin-top: 20px;
+            }
+            .marketing-col{
+                display: none !important;
+            }
+        }
+
+        @media screen and (min-width:768px) and (max-width:768px) {
+            .email-toggle{
+                margin-left: -20px !important;
+                margin-top: 15px !important;
+            }
+            .phone-toggle{
+                margin-left: -20px !important;
+                margin-top: 15px !important;
+            }
+        }
+
+        @media (max-width:767px) {
+            .phone-input{
+                margin-top: 20px;
+            }
+            .last-name{
+                margin-top: 20px;
+            }
+            .email-input{
+                margin-top: 10px;
+            }
+            .email-toggle{
+                margin-top: 25px !important;
+                margin-left: -23px !important;
+            }
+            .phone-toggle{
+                margin-top: 35px !important;
+                margin-left: -23px !important;
+            }
+        }
+        .logo-header {
+            padding: 80px 0 80px 70px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-header {
+                padding: 30px 0 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-header {
+                padding: 20px 0 20px 15px;
+            }
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            /* max-width: 620px; */
+            width: 640px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 25px 20px;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-card {
+                padding: 20px 15px;
+                margin: 0 10px;
+            }
+        }
+
+        .card-heading {
+            color: #0a2e65;
+            /* font-size: 64px; */
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 25px;
+        }
+
+        .input-field-responsive {
+            height: 45px;
+            border: 1px solid #ced4da;
+            width: 260px;
+            /* max-width: 230px; */
+        }
+
+        .input-field-full-responsive {
+            height: 45px;
+            border: 1px solid #ced4da;
+            width: 540px;
+            /* max-width: 475px; */
+        }
+
+        @media (max-width: 768px) {
+
+            .input-field-responsive,
+            .input-field-full-responsive {
+                max-width: 100%;
+            }
+        }
+
+        .marketing-col {
+            padding-left: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .marketing-col {
+                padding-left: 20px;
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .marketing-col {
+                padding-left: 15px;
+                padding-top: 15px;
+            }
+        }
+
+        .marketing-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .marketing-heading {
+            color: #0a2e65;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .marketing-subtext {
+            color: #0a2e65;
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .missed-link {
+            color: #0066f5;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            width: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .desktop-map-container {
+            margin-top: -20px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .desktop-map-img {
+            width: 170%;
+            max-width: none;
+            margin-left: 50px;
+            display: block;
+        }
+
+        .btn {
+            background-color: transparent;
+            color: #0066f5;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-left: -10px;
+            border: none;
+        }
+
+        /* From Uiverse.io by mrhyddenn */
+        /* The switch - the box around the slider */
+        .switch {
+            font-size: 17px;
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 1;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0px;
+            background: lightgrey;
+            transition: .4s;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 1.3em;
+            width: 1.3em;
+            border-radius: 16px;
+            left: 1.2px;
+            top: 0;
+            bottom: 0;
+            background-color: white;
+            box-shadow: 0 2px 5px #999999;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #5fdd54;
+            border: 1px solid transparent;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(1.5em);
+        }
+
+        .sec-text {
+            color: #7586a3;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cowrywise-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .cowrywise-float:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="logo-header container">
+        <img src="Images/navlogo.svg" alt="Cowrywise" height="30">
+    </header>
+    <main class="container flex-grow-1">
+
+        <div class="row w-100 px-lg-5">
+
+            <div class="col-lg-6 justify-content-center align-items-start pt-4">
+                <div class="content-card">
+                    <h1 class="card-heading">Complete your profile</h1>
+
+                    <div class="">
+                        <div class="row input-group">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <input type="text" aria-label="Legal First Name"
+                                    class="form-floating p-3 input-field-responsive" placeholder="Legal First Name" id="firstName">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 last-name">
+                                <input type="text" aria-label="Legal Last Name"
+                                    class="form-floating p-3 input-field-responsive" placeholder="Legal Last Name" id="lastName">
+                            </div>
+                        </div>
+
+
+                        <div class="row input-group mt-3">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <input type="email" aria-label="Email" class="form-floating p-3 input-field-responsive email-input"
+                                    placeholder="Email" style="z-index: 2; position: relative; font-size: 1rem;" id="email" readonly>
+                                <img src="Images/person.svg" alt="" height="15" class="email-toggle"
+                                    style="margin-top: -28px; margin-left: 237px; z-index: 3; position: absolute;">
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <input type="tel" aria-label="Phone Number"
+                                    class="form-floating p-3 input-field-responsive phone-input" placeholder="Phone Number"
+                                    style="z-index: 4; position: relative;" id="phone">
+                                <img src="Images/phone.svg" alt="" height="15"  class="phone-toggle"
+                                    style="margin-top: -30px; margin-left: 237px; z-index: 5; position: absolute;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-floating mt-4">
+                        <input type="password" aria-label="Password"
+                            class="form-floating p-3 input-field-full-responsive" placeholder="Password"
+                            style="z-index: 2; position: relative;" id="floatingPassword">
+
+                        <img src="Images/download.svg" alt="toggle" height="18" class="password-toggle"
+                            style="z-index: 3; position: absolute; margin-top: 15px; margin-left: -30px;">
+                    </div>
+
+                    <div>
+                        <button onclick="showInput()" class="btn" id="showValue">Got an invite code?</button>
+                        <input type="text" aria-label="invitecode" hidden
+                            class="form-floating p-3 input-field-full-responsive" placeholder="Invite Code"
+                            style="z-index: 2; position: relative;" id="hiddenInput">
+
+                        <div class="d-flex">
+                            <p class="text-muted" style="margin-top: 20px;">Make my account Halal</p>
+                            <button id="infoBtn" class="text-muted"
+                                style="border: none; background-color: transparent;"><i
+                                    class="bi bi-info-circle"></i></button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="infoModal" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content rounded-4 p-3">
+
+                                        <!-- Close button -->
+                                        <div class="modal-header border-0 pb-0">
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+
+                                        <div class="modal-body pt-1">
+                                            <!-- Icon -->
+                                            <div class="mb-3">
+                                                <img src="Images/Gemini_Generated_Image_22jlf22jlf22jlf2-removebg-preview.png" alt="icon" width="100" style="margin-left: -30px;">
+                                            </div>
+
+                                            <!-- Title -->
+                                            <h5 class="fw-bold mb-2">Halal Account</h5>
+
+                                            <!-- Description -->
+                                            <p class="text-muted">
+                                                Halal accounts are great for muslims who want only
+                                                Shariah-compliant investments and no interest on their savings.
+                                            </p>
+                                        </div>
+
+                                        <!-- Footer with text button -->
+                                        <div class="modal-footer border-0 pt-0 justify-content-end">
+                                            <button type="button"
+                                                class="btn btn-link text-primary fw-semibold text-decoration-none"
+                                                data-bs-dismiss="modal">
+                                                Got It
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- From Uiverse.io by mrhyddenn -->
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <p class="text-muted" style="font-weight: 600; font-size: small;">By tapping on Create Account,
+                            you agree to our <span style="color: #0014f5;">Terms and Conditions</span> and <span
+                                style="color: #0014f5;">Privacy Policy</span></p>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="checkBtn" style="margin-left: 340px; width: 200px;" disabled>Create
+                        Account</button>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-between">
+                    <div class="sec-text">
+                        <img src="Images/imgi_1_sec-logo.uViKvy1J.png" alt="SEC" height="18">
+                        Cowrywise is licensed by the SEC
+                    </div>
+                    <div class="">
+                        <a href="#"
+                            style="color: #0066f5; text-decoration: none; font-weight: 600; font-size: 14px;">Need
+                            Help?</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6  col-md-6 marketing-col">
+                <div class="marketing-content">
+                    <h2 class="marketing-heading">Don’t wait to start</h2>
+                    <p class="marketing-subtext">See how much you could have earned in<br>the past few years.</p>
+
+                    <a href="#" class="missed-link">
+                        <img src="Images/star.svg" alt="" height="14">
+                        See what you missed
+                        <span>&gt;</span>
+                    </a>
+                </div>
+
+                <div class="desktop-map-container">
+                    <img src="Images/imgi_12_auth-bg.svg" alt="Investment Path" class="desktop-map-img">
+                </div>
+            </div>
+        </div>
+
+        <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"
+            style="border-radius: 50%; cursor: pointer; z-index: 5;">
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    const toggleIcon = document.querySelector('.password-toggle');
+    const passwordInput = document.getElementById('floatingPassword');
+
+    toggleIcon.addEventListener('click', function () {
+
+        if (passwordInput.type === 'password') {
+            // If it's hidden, make it text (visible)
+            passwordInput.type = 'text';
+        } else {
+            // If it's visible, make it hidden again
+            passwordInput.type = 'password';
+        }
+    })
+
+    function showInput() {
+        // console.log('yeeeeee');
+        const showButton = document.getElementById('showValue')
+        const hiddenInput = document.getElementById("hiddenInput")
+
+        hiddenInput.setAttribute("class", "d-inline form-floating p-3 input-field-full-responsive mt-4")
+        showButton.setAttribute('class', 'd-none')
+    }
+
+    const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+
+    document.getElementById('infoBtn').addEventListener('click', () => {
+        infoModal.show();
+    });
+
+   document.addEventListener('DOMContentLoaded', () => {
+        const savedValue = localStorage.getItem('sharedValue');
+
+
+        if (savedValue) {
+        //    document.getElementById('email').value = savedValue
+        const parts = savedValue.split('@');
+        const newFormat = "@" + parts[0]
+
+        document.getElementById('email').value = newFormat;
+        }
+    })
+
+    const inputs= document.querySelectorAll('input:not(#hiddenInput)');
+    const btn = document.getElementById('checkBtn');
+
+    function checkInputs() {
+        const allFilled = [...inputs].every(input=> input.value.trim() !== '');
+        btn.disabled = !allFilled;
+    }
+
+    inputs.forEach(input => input.addEventListener('input', checkInputs));
+</script>
+
+</html>

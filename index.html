@@ -218,7 +218,7 @@
     </div>
       
     <div class="lastcontent">
-      <p style="color: #0067f7; margin: 30px; margin-left: -2px; cursor: pointer;">Our approach to security & regulation ➡</p>
+      <p style="color: #0067f7; margin: 30px; margin-left: -2px; cursor: pointer;">Our approach to security & regulation <img src="Images/arrow_forward_24dp_0067F5_FILL0_wght400_GRAD0_opsz24.svg" alt="" height="15"></p>
     </div>
    </div>
   </section>
@@ -265,14 +265,14 @@
      <div class="moneycard1">
       <p class="text-muted para2">If you invested <span class="deepcol">every month <img src="Images/dropdowntoggle.svg" alt=""></span> <span class="deepcol" style="margin-left: 8px;"> 3 years ago <img src="Images/dropdowntoggle.svg" alt=""></span></p>
        <label for="number" class="label2" style="color: white; margin-left: 30px; font-size: 40px; font-weight: bold; margin-top: 95px;">100,000</label>
-      <input type="number" class="input2">
+      <input type="number" class="input2" readonly style="outline: none;">
       <select name="currency" id="">
         <option value="">Naira</option>
         <option value="">Dollar</option>
       </select>
     </div>
 
-    <div class="moneycard2 d-flex">
+    <div class="moneycard2 d-flex" onclick="confetti()">
      <div>
        <p class="para3">Today, you'd have</p>
        <p class="para4"><span style="font-size: medium;">₦</span>4,367,631</p>
@@ -281,7 +281,7 @@
       <div>
        <p class="para3 ">..earned returns on Cowrywise</p>
       <div class="pt-lg-1">
-        <p class="para4 mt-lg-5 pt-lg-4 para41"><span style="font-size: medium;">₦</span>767,631</p>
+        <p class="para4 mt-lg-5 pt-lg-5 para41"><span style="font-size: medium;">₦</span>767,631</p>
       </div>
      </div>
     </div>
@@ -476,4 +476,6 @@
  </footer>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@hiseb/confetti@2.1.0/dist/confetti.min.js"></script>
 </html>

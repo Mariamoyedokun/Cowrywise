@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify BVN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: "Quicksand", sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        @media (max-width: 1399px) {
+            body {
+                background-image: url('Images/imgi_12_auth-bg.svg');
+                background-size: cover;
+                background-position: center;
+                background-attachment: fixed;
+            }
+
+            .desktop-map-container {
+                display: none;
+            }
+
+            .content-card {
+                margin-top: 20px;
+            }
+
+            .marketing-col {
+                display: none !important;
+            }
+        }
+
+        @media screen and (min-width:768px) and (max-width:768px) {
+            .email-toggle {
+                margin-left: -20px !important;
+                margin-top: 15px !important;
+            }
+
+            .phone-toggle {
+                margin-left: -20px !important;
+                margin-top: 15px !important;
+            }
+        }
+
+        @media (max-width:767px) {
+            .phone-input {
+                margin-top: 20px;
+            }
+
+            .last-name {
+                margin-top: 20px;
+            }
+
+            .email-input {
+                margin-top: 10px;
+            }
+
+            .email-toggle {
+                margin-top: 25px !important;
+                margin-left: -23px !important;
+            }
+
+            .phone-toggle {
+                margin-top: 35px !important;
+                margin-left: -23px !important;
+            }
+        }
+
+        .logo-header {
+            padding: 80px 0 80px 70px;
+        }
+
+        @media (max-width: 768px) {
+            .logo-header {
+                padding: 30px 0 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-header {
+                padding: 20px 0 20px 15px;
+            }
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            /* max-width: 620px; */
+            width: 640px;
+        }
+
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 25px 20px;
+                margin: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content-card {
+                padding: 20px 15px;
+                margin: 0 10px;
+            }
+        }
+
+        .card-heading {
+            color: #0a2e65;
+            /* font-size: 64px; */
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 45px;
+        }
+
+        .input-field-responsive {
+            height: 45px;
+            border: 1px solid #ced4da;
+            width: 260px;
+            /* max-width: 230px; */
+        }
+
+        .input-field-full-responsive {
+            height: 45px;
+            border: 1px solid #ced4da;
+            width: 540px;
+            /* max-width: 475px; */
+        }
+
+        @media (max-width: 768px) {
+
+            .input-field-responsive,
+            .input-field-full-responsive {
+                max-width: 100%;
+            }
+        }
+
+        .marketing-col {
+            padding-left: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .marketing-col {
+                padding-left: 20px;
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .marketing-col {
+                padding-left: 15px;
+                padding-top: 15px;
+            }
+        }
+
+        .marketing-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .marketing-heading {
+            color: #0a2e65;
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .marketing-subtext {
+            color: #0a2e65;
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .missed-link {
+            color: #0066f5;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            width: fit-content;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .desktop-map-container {
+            margin-top: -20px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .desktop-map-img {
+            width: 190%;
+            max-width: none;
+            margin-left: 50px;
+            display: block;
+        }
+
+        .btn {
+            background-color: transparent;
+            color: #0066f5;
+            font-weight: 700;
+            margin-top: 20px;
+            margin-left: -10px;
+            border: none;
+        }
+
+
+
+        .sec-text {
+            color: #7586a3;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cowrywise-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .cowrywise-float:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <header class="logo-header container">
+        <img src="Images/navlogo.svg" alt="Cowrywise" height="30">
+    </header>
+    <main class="container flex-grow-1">
+
+        <div class="row w-100 px-lg-5">
+
+            <div class="col-lg-6 justify-content-center align-items-start pt-4">
+                <div class="content-card">
+                    <h1 class="card-heading">Verify your identity <br>with your BVN</h1>
+
+                    <div class="form-floating mt-4">
+                        <input type="number" aria-label="bvn" class="form-floating p-3 input-field-full-responsive"
+                            placeholder="Bank Verification Number" style="z-index: 2; position: relative;" id="bvn">
+                        <div id="display" style="color: red; font-size: small;"></div>
+                        <br><br>
+                        <div><a style="text-decoration: none; font-size: small; font-weight: bold;" href="#"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                                    <path d="M0 0h24v24H0z" fill="none" />
+                                    <path fill="currentColor"
+                                        d="M12 8.75c-.69 0-1.25.56-1.25 1.25v.107a.75.75 0 1 1-1.5 0V10A2.75 2.75 0 0 1 12 7.25h.116a2.634 2.634 0 0 1 1.714 4.633l-.77.66a.9.9 0 0 0-.31.674v.533a.75.75 0 0 1-1.5 0v-.533c0-.697.304-1.359.833-1.812l.771-.66a1.134 1.134 0 0 0-.738-1.995zM12 17a1 1 0 1 0 0-2a1 1 0 0 0 0 2" />
+                                    <path fill="currentColor"
+                                        d="M3.25 12a8.75 8.75 0 1 1 17.5 0a8.75 8.75 0 0 1-17.5 0M12 4.75a7.25 7.25 0 1 0 0 14.5a7.25 7.25 0 0 0 0-14.5" />
+                                </svg>
+                                Why Do We Need Your BVN</a></div>
+                    </div><br><br>
+
+
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control input-field-full-responsive" id="floatingInput"
+                            placeholder="">
+                        <label for="floatingInput">Date Of Birth</label>
+                    </div>
+                    <div id="show" style="color: red; font-size: small;"></div>
+                    <div id="showTwo" style="color: green; font-size: small;"></div>
+
+                    <div>
+                        <div class="d-flex">
+                            <button class="btn" style="font-size: small;">Got Issues Adding Your BVN?</button>
+                            <button type="button" class="btn btn-primary" onclick="checkBtn()"
+                                style="margin-left: 215px; width: 130px; height: 45px;">Continue</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-4 d-flex justify-content-between">
+                    <div class="sec-text">
+                        <img src="Images/imgi_1_sec-logo.uViKvy1J.png" alt="SEC" height="18">
+                        Cowrywise is licensed by the SEC
+                    </div>
+                    <div class="">
+                        <a href="#"
+                            style="color: #0066f5; text-decoration: none; font-weight: 600; font-size: 14px;">Need
+                            Help?</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6  col-md-6 marketing-col">
+                <div class="marketing-content">
+                    <h2 class="marketing-heading">Don’t wait to start</h2>
+                    <p class="marketing-subtext">See how much you could have earned in<br>the past few years.</p>
+
+                    <a href="#" class="missed-link">
+                        <img src="Images/star.svg" alt="" height="14">
+                        See what you missed
+                        <span>&gt;</span>
+                    </a>
+                </div>
+
+                <div class="desktop-map-container">
+                    <img src="Images/imgi_12_auth-bg.svg" alt="Investment Path" class="desktop-map-img">
+                </div>
+            </div>
+        </div>
+
+        <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"
+            style="border-radius: 50%; cursor: pointer; z-index: 5;">
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+
+    function checkBtn() {
+        const bvn = document.getElementById('bvn').value;
+        const date = document.getElementById('floatingInput').value;
+
+        console.log(bvn, date);
+
+        const today = new Date();
+        const birthDate = new Date(date);
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        if (bvn === '') {
+            display.innerHTML = `*Enter Your BVN`
+            setTimeout(() => { display.style.display = 'none'; }, 1500);
+        }
+        else if (bvn.length != 11) {
+            display.innerHTML = `*Enter a valid BVN format`
+            setTimeout(() => { display.style.display = 'none'; }, 1500);
+        }
+        else if (date === '') {
+            show.innerHTML = `*Enter Your Date Of Birth`
+            setTimeout(() => { show.style.display = 'none'; }, 1500);
+        }
+        else if (age < 18) {
+            show.innerHTML = `*You must be at least 18 years old`
+            setTimeout(() => { show.style.display = 'none'; }, 1500);
+        }
+          else {
+         showTwo.innerHTML = `*BVN Successfully verified!!`
+         setTimeout(() => { showTwo.style.display = 'none'; }, 1500);
+    }
+    }
+</script>
+
+</html>

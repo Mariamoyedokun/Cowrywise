@@ -556,6 +556,9 @@
       width: 130px !important;
       margin-left: -100px !important;
     }
+    input2::-webkit-inner-spin-button{
+      -webkit-appearance:none;
+    }
     .para41{
       margin-top: 15px !important;
     }
