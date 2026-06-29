@@ -36,41 +36,48 @@
             .content-card {
                 margin-top: 20px;
             }
-            .marketing-col{
+
+            .marketing-col {
                 display: none !important;
             }
         }
 
         @media screen and (min-width:768px) and (max-width:768px) {
-            .email-toggle{
+            .email-toggle {
                 margin-left: -20px !important;
                 margin-top: 15px !important;
             }
-            .phone-toggle{
+
+            .phone-toggle {
                 margin-left: -20px !important;
                 margin-top: 15px !important;
             }
         }
 
         @media (max-width:767px) {
-            .phone-input{
+            .phone-input {
                 margin-top: 20px;
             }
-            .last-name{
+
+            .last-name {
                 margin-top: 20px;
             }
-            .email-input{
+
+            .email-input {
                 margin-top: 10px;
             }
-            .email-toggle{
+
+            .email-toggle {
                 margin-top: 25px !important;
                 margin-left: -23px !important;
             }
-            .phone-toggle{
+
+            .phone-toggle {
                 margin-top: 35px !important;
                 margin-left: -23px !important;
             }
         }
+
         .logo-header {
             padding: 80px 0 80px 70px;
         }
@@ -310,27 +317,30 @@
                         <div class="row input-group">
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <input type="text" aria-label="Legal First Name"
-                                    class="form-floating p-3 input-field-responsive" placeholder="Legal First Name" id="firstName">
+                                    class="form-floating p-3 input-field-responsive" placeholder="Legal First Name"
+                                    id="firstName">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12 last-name">
                                 <input type="text" aria-label="Legal Last Name"
-                                    class="form-floating p-3 input-field-responsive" placeholder="Legal Last Name" id="lastName">
+                                    class="form-floating p-3 input-field-responsive" placeholder="Legal Last Name"
+                                    id="lastName">
                             </div>
                         </div>
 
 
                         <div class="row input-group mt-3">
                             <div class="col-lg-6 col-md-6 col-sm-12">
-                                <input type="email" aria-label="Email" class="form-floating p-3 input-field-responsive email-input"
-                                    placeholder="Email" style="z-index: 2; position: relative; font-size: 1rem;" id="email" readonly>
+                                <input type="email" aria-label="Email"
+                                    class="form-floating p-3 input-field-responsive email-input" placeholder="Email"
+                                    style="z-index: 2; position: relative; font-size: 1rem;" id="email" readonly>
                                 <img src="Images/person.svg" alt="" height="15" class="email-toggle"
                                     style="margin-top: -28px; margin-left: 237px; z-index: 3; position: absolute;">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-12">
                                 <input type="tel" aria-label="Phone Number"
-                                    class="form-floating p-3 input-field-responsive phone-input" placeholder="Phone Number"
-                                    style="z-index: 4; position: relative;" id="phone">
-                                <img src="Images/phone.svg" alt="" height="15"  class="phone-toggle"
+                                    class="form-floating p-3 input-field-responsive phone-input"
+                                    placeholder="Phone Number" style="z-index: 4; position: relative;" id="phone">
+                                <img src="Images/phone.svg" alt="" height="15" class="phone-toggle"
                                     style="margin-top: -30px; margin-left: 237px; z-index: 5; position: absolute;">
 
                             </div>
@@ -373,7 +383,8 @@
                                         <div class="modal-body pt-1">
                                             <!-- Icon -->
                                             <div class="mb-3">
-                                                <img src="Images/Gemini_Generated_Image_22jlf22jlf22jlf2-removebg-preview.png" alt="icon" width="100" style="margin-left: -30px;">
+                                                <img src="Images/Gemini_Generated_Image_22jlf22jlf22jlf2-removebg-preview.png"
+                                                    alt="icon" width="100" style="margin-left: -30px;">
                                             </div>
 
                                             <!-- Title -->
@@ -409,7 +420,8 @@
                                 style="color: #0014f5;">Privacy Policy</span></p>
                     </div>
 
-                    <button type="button" class="btn btn-primary" id="checkBtn" style="margin-left: 340px; width: 200px;" disabled>Create
+                    <button type="button" onclick="createAccount()" class="btn btn-primary" id="checkBtn"
+                        style="margin-left: 340px; width: 200px;" disabled>Create
                         Account</button>
                 </div>
 
@@ -482,28 +494,35 @@
         infoModal.show();
     });
 
-   document.addEventListener('DOMContentLoaded', () => {
+
+    document.addEventListener('DOMContentLoaded', () => {
         const savedValue = localStorage.getItem('sharedValue');
 
 
         if (savedValue) {
-        //    document.getElementById('email').value = savedValue
-        const parts = savedValue.split('@');
-        const newFormat = "@" + parts[0]
+            //    document.getElementById('email').value = savedValue
+            const parts = savedValue.split('@');
+            const newFormat = "@" + parts[0]
 
-        document.getElementById('email').value = newFormat;
+            document.getElementById('email').value = newFormat;
         }
     })
 
-    const inputs= document.querySelectorAll('input:not(#hiddenInput)');
+    const inputs = document.querySelectorAll('input:not(#hiddenInput)');
     const btn = document.getElementById('checkBtn');
 
     function checkInputs() {
-        const allFilled = [...inputs].every(input=> input.value.trim() !== '');
+        const allFilled = [...inputs].every(input => input.value.trim() !== '');
         btn.disabled = !allFilled;
     }
 
     inputs.forEach(input => input.addEventListener('input', checkInputs));
+
+    function createAccount() {
+        const firstName = document.getElementById('firstName').value;
+        localStorage.setItem('firstName', firstName);
+        window.location.href = 'welcome.html';
+    }
 </script>
 
 </html>
