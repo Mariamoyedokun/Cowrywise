@@ -127,7 +127,8 @@
 
       <div class="text-center mb-5 d-flex productcontent">
         <h2 class="fw-medium mb-3 text-start headerproduct" style="font-size: 55px; color: #082552;">How would you like
-          <br>to grow?</h2>
+          <br>to grow?
+        </h2>
         <p class="text-reset text-start mx-auto mb-4 paraproduct" style="max-width: 480px; color: #687b95;">
           All your wealth-building tools, finally in one app. Save automatically for
           the things you care about and grow your wealth the smart way.
@@ -315,13 +316,18 @@
           <p class="text-muted para2">If you invested <span class="deepcol">every month <img
                 src="Images/dropdowntoggle.svg" alt=""></span> <span class="deepcol" style="margin-left: 8px;"> 3 years
               ago <img src="Images/dropdowntoggle.svg" alt=""></span></p>
-          <label for="number" class="label2"
-            style="color: white; margin-left: 30px; font-size: 40px; font-weight: bold; margin-top: 95px;">100,000</label>
-          <input type="number" class="input2" readonly style="outline: none;">
-          <select name="currency" id="">
-            <option value="">Naira</option>
-            <option value="">Dollar</option>
-          </select>
+              <div class="d-flex amount">
+                <div>
+                  <label for="number" class="label2"
+                    style="color: white; margin-left: 30px; font-size: 40px; font-weight: bold; margin-top: 95px;">100,000</label>
+                  <input type="number" class="input2" readonly style="outline: none;">
+                </div>
+
+                <select name="currency" id="slt">
+              <option value="">Naira</option>
+              <option value="">Dollar</option>
+            </select>
+              </div>
         </div>
 
         <div class="moneycard2 d-flex" onclick="confetti()">
@@ -332,7 +338,7 @@
           <div class="vr vr3"></div>
           <div>
             <p class="para3 ">..earned returns on Cowrywise</p>
-            <div class="pt-lg-1">
+            <div class="pt-lg-1 amount2">
               <p class="para4 mt-lg-5 pt-lg-5 para41"><span style="font-size: medium;">₦</span>767,631</p>
             </div>
           </div>

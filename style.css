@@ -203,7 +203,7 @@
       }
     }
 
-    @media screen and (min-width: 1020px) and (max-width: 1190px) {
+    @media screen and (min-width: 1020px) and (max-width: 1199px) {
       .card-img1 {
         width: 200px !important;
       }
@@ -238,9 +238,12 @@
       }
     }
 
-    @media screen and (min-width: 500px) and (max-width: 560px) {
+    @media screen and (min-width: 486px) and (max-width: 560px) {
       .trustcards {
         flex-direction: column;
+      }
+      .box{
+        width: 450px !important;
       }
     }
 
@@ -369,7 +372,7 @@
       }
     }
 
-    @media screen and (min-width: 560px) and (max-width: 1010px) {
+    @media screen and (min-width: 560px) and (max-width: 1019px) {
       .trustcards {
         flex-direction: column;
       }
@@ -390,7 +393,7 @@
       }
     }
 
-    @media screen and (min-width: 1020px) and (max-width: 1190px) {
+    @media screen and (min-width: 1020px) and (max-width: 1199px) {
       .box {
         width: 400px;
       }
@@ -428,12 +431,26 @@
         margin-top: 100px;
       }
     }
+ 
+    @media screen and (min-width: 1200px) and (max-width: 1269px) {
+      .flowers2{
+        display: none;
+      }
+      .box2{
+        width: 150px !important;
+      }
+    }
 
-    @media screen and (min-width: 1440px) and (max-width: 1445px) {
+
+    @media screen and (min-width: 1400px) and (max-width: 1445px) {
       .flowers2 {
-        width: 220px !important;
+        width: 250px !important;
         height: 500px;
         margin-top: 100px;
+        margin-left: 35px;
+      }
+      .box2{
+        width: 350px;
       }
     }
 
@@ -521,12 +538,14 @@
       width: 230px;
     }
 
-    select {
+    #slt {
       color: white;
       background-color: transparent;
-      padding: 10px;
+      /* padding: 1px; */
+      height: 50px;
       border-radius: 10px;
       margin-left: 10px;
+      margin-top: 100px;
     }
 
     .moneycard2 {
@@ -608,13 +627,24 @@
       }
     }
 
-    @media screen and (min-width: 551px) and (max-width: 645px) {
+    @media screen and (min-width: 520px) and (max-width: 645px) {
       .moneycard2 {
         width: 500px;
       }
 
       .tag2 {
         margin-left: 450px !important;
+      }
+    }
+
+     @media screen and (min-width: 520px) and (max-width: 550px) {
+      .moneycard2 {
+        width: 500px;
+      }
+
+      .tag2 {
+        margin-left: 450px !important;
+        margin-top: -300px !important;
       }
     }
 
@@ -652,6 +682,12 @@
       .coin2 {
         margin-left: 200px !important;
         margin-top: -120px !important;
+      }
+    }
+
+    @media screen and (min-width: 370px) and (max-width: 407px) {
+      .amount{
+        margin-top: -20px !important;
       }
     }
 
@@ -729,7 +765,7 @@
       }
     }
 
-    @media screen and (min-width: 551px) and (max-width: 1010px) {
+    @media screen and (min-width: 551px) and (max-width: 1019px) {
       .timecontent {
         flex-direction: row;
         margin-left: -10px;
@@ -755,6 +791,49 @@
       }
 
     }
+
+    @media screen and (min-width: 1020px) and (max-width: 1190px) {
+      .input2{
+        display: none;
+      }
+      .amount{
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+      .amount2{
+        margin-top: -20px;
+      }
+    }
+
+    @media screen and (min-width: 1191px) and (max-width: 1199px) {
+      .input2{
+        display: none;
+      }
+      .amount{
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+      .amount2{
+        margin-top: -50px;
+      }
+      .para6{
+        margin-top: 90px;
+      }
+    }
+
+     @media screen and (min-width: 1200px) and (max-width: 1399px) {
+      .input2{
+        display: none;
+      }
+      .amount{
+        margin-top: -20px;
+        margin-left: -20px;
+      }
+      .amount2{
+        margin-top: -30px;
+      }
+    }
+
 
     .cus1 {
       cursor: pointer;
@@ -855,7 +934,7 @@
       }
     }
 
-    @media screen and (min-width: 551px) and (max-width: 1010px) {
+    @media screen and (min-width: 551px) and (max-width: 1019px) {
       .customercontent {
         flex-direction: row;
         margin-left: -10px;
@@ -910,7 +989,7 @@
       }
     }
 
-    @media screen and (min-width: 551px) and (max-width: 1010px) {
+    @media screen and (min-width: 551px) and (max-width: 1019px) {
       .footerline {
         display: none;
       }
@@ -929,7 +1008,7 @@
       }
     }
 
-    @media screen and (min-width: 1020px) and (max-width: 1190px) {
+    @media screen and (min-width: 1020px) and (max-width: 1269px) {
       .footerline {
         display: none;
       }
