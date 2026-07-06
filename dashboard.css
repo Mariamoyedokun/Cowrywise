@@ -1,0 +1,114 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #f5f7ff;
+  margin: 0;
+}
+
+/* Top bar — hidden on desktop, shown on mobile */
+.topbar {
+  display: none;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+}
+.lastcontent{
+  /* margin-left: 500px; */
+  /* align-items: end; */
+}
+
+/* Sidebar */
+.logo{
+  width: 35px;
+  margin-top: -10px;
+  margin-left: 60px;
+}
+.sidenav {
+  margin-left: 50px;
+  height: 100vh;
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* background-color: #fff; */
+  border-right: 1px solid #eee;
+  padding-top: 30px;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.greeting {
+  padding: 0 24px 20px;
+  color: #999;
+  font-size: 19px;
+  margin-top: 50px;
+}
+
+.sidenav a {
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #555;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #f5f7ff;
+}
+
+.sidenav a.active {
+  background-color: #eef2ff;
+  color: #2952e3;
+  font-weight: 600;
+}
+
+/* Main content pushed right on desktop */
+.main-content {
+  margin-left: 220px;
+  padding: 30px;
+}
+
+/* Overlay - invisible and inactive by default */
+.overlay {
+  display: none;
+}
+
+/* ---- Mobile styles ---- */
+@media screen and (max-width: 768px) {
+  .topbar {
+    display: flex;
+  }
+
+  .sidenav {
+    transform: translateX(-100%);
+  }
+
+  .sidenav.open {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .overlay.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+}

@@ -162,6 +162,9 @@
         }
 
         @media (max-width: 768px) {
+            .topcontent{
+                margin-right: 150px;
+            }
             .welcome-content {
                 flex-direction: column;
                 align-items: center;
@@ -227,15 +230,20 @@
                 font-size: 12px;
             }
         }
+        @media (max-width: 412px) {
+            .content1{
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 
 <body>
     <main class="container">
         <div class="d-flex welcome-content">
-            <div>
+            <div class="topcontent">
                 <h5 id="display"></h5>
-                <h1 class="mt-2">What would you <br>like to do?</h1>
+                <h1 class="mt-2 content1">What would you <br>like to do?</h1>
             </div>
 
             <div class="d-flex flex-column mx-auto align-items-center gap-4">

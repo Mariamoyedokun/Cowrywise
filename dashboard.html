@@ -1,18 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="dashboard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <p style="line-height: 30px;">welcome</p>
-    <p>welcome</p>
+
+<!-- Top bar: only the hamburger shows on mobile -->
+<div class="topbar">
+  <span id="openBtn" class="hamburger" onclick="openNav(event)">&#9776;</span>
+</div>
+
+<!-- Overlay used to detect "click outside" on mobile -->
+<div id="overlay" class="overlay" onclick="closeNav()"></div>
+<div class="topnav container d-flex mt-4 justify-content-between">
+  <h6>ACCOUNT OVERVIEW</h6>
+  <div class="lastcontent">
+    <button class="rounded-5 px-4 bg-white border-0 py-1">Seed</button>
+    <img src="Images/notificationprofile.svg" alt="" height="20">
+    <select name="" id="">
+      <option value=""><img src="Images/profile.svg" alt="">HIII</option>
+      <option value=""></option>
+    </select>
+  </div>
+</div>
+
+<div id="mySidenav" class="sidenav">
+  <div><img src="Images/cowrywiseprofile.svg" alt="" class="logo"></div>
+  <div class="greeting">Hey <strong>Mariam</strong></div>
+  <div class="sidebar-content">
+    <a href="#" class="active"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="27px" fill="#ff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home</a>
+    <a href="#">🔒 Save</a>
+    <a href="#">🎁 Invest</a>
+    <a href="#">🪺 Nest</a>
+    <a href="#">💳 Payment</a>
+    <a href="#">📦 Stash</a>
+    <a href="#">🎓 Learn</a>
+    <a href="#">📣 Referral</a>
+  </div>
+</div>
+
+<div class="main-content">
+  <!-- <p>Resize the window below 768px to see the hamburger menu. On mobile, tap the hamburger to open, tap anywhere outside the sidebar to close.</p> -->
+</div>
+
+<script src="dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
