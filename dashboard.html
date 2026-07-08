@@ -1,54 +1,494 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<link rel="stylesheet" href="dashboard.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Top bar: only the hamburger shows on mobile -->
-<div class="topbar">
-  <span id="openBtn" class="hamburger" onclick="openNav(event)">&#9776;</span>
-</div>
-
-<!-- Overlay used to detect "click outside" on mobile -->
-<div id="overlay" class="overlay" onclick="closeNav()"></div>
-<div class="topnav container d-flex mt-4 justify-content-between">
-  <h6>ACCOUNT OVERVIEW</h6>
-  <div class="lastcontent">
-    <button class="rounded-5 px-4 bg-white border-0 py-1">Seed</button>
-    <img src="Images/notificationprofile.svg" alt="" height="20">
-    <select name="" id="">
-      <option value=""><img src="Images/profile.svg" alt="">HIII</option>
-      <option value=""></option>
-    </select>
+  <!-- Top bar: only the hamburger shows on mobile -->
+  <div class="topbar">
+    <span id="openBtn" class="hamburger" onclick="openNav(event)">&#9776;</span>
   </div>
-</div>
 
-<div id="mySidenav" class="sidenav">
-  <div><img src="Images/cowrywiseprofile.svg" alt="" class="logo"></div>
-  <div class="greeting">Hey <strong>Mariam</strong></div>
-  <div class="sidebar-content">
-    <a href="#" class="active"><svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="27px" fill="#ff"><path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/></svg> Home</a>
-    <a href="#">🔒 Save</a>
-    <a href="#">🎁 Invest</a>
-    <a href="#">🪺 Nest</a>
-    <a href="#">💳 Payment</a>
-    <a href="#">📦 Stash</a>
-    <a href="#">🎓 Learn</a>
-    <a href="#">📣 Referral</a>
+  <!-- Overlay used to detect "click outside" on mobile -->
+  <div id="overlay" class="overlay" onclick="closeNav()"></div>
+  <div class="topnav container d-flex mt-4 justify-content-between">
+    <h6 class="fs-6 fw-bold mt-2 head" id="pageHeader">ACCOUNT OVERVIEW</h6>
+    <div class="lastcontent">
+      <button class="rounded-5 px-4 bg-white border-0 py-1 seed"><img src="Images/seed_icon.png" alt="" width="16">
+        Seed</button>
+      <img src="Images/notificationprofile.svg" alt="" height="15" class="notif">
+      <div class="dropdown d-inline">
+        <img src="Images/profile.svg" alt="Profile" class="rounded-circle" style="width: 30px; cursor: pointer;"
+          id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg"
+          width="10" height="10" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+          <path
+            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+        </svg>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <li><a class="dropdown-item" href="#">My Profile</a></li>
+          <li><a class="dropdown-item" href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
 
-<div class="main-content">
-  <!-- <p>Resize the window below 768px to see the hamburger menu. On mobile, tap the hamburger to open, tap anywhere outside the sidebar to close.</p> -->
-</div>
+  <div id="mySidenav" class="sidenav">
+    <div><img src="Images/cowrywiseprofile.svg" alt="" class="logo"></div>
+    <div class="greeting">Hey <strong>Mariam</strong></div>
+    <div class="sidebar-content">
+      <a href="#" class="active" onclick="showPage('home', 'ACCOUNT OVERVIEW', this)"><img src="Images/sidebar-home.svg"
+          alt="home" width="22"> Home</a>
+      <a href="#" onclick="showPage('save', 'SAVE', this)"><img src="Images/sdiebar-save.svg" alt="save" width="22">
+        Save</a>
+      <a href="#" onclick="showPage('invest', 'INVEST', this)"><img src="Images/sidebar-invest.svg" alt="invest"
+          width="22"> Invest</a>
+      <a href="#" onclick="showPage('nest', 'NEST', this)"><img src="Images/sidebar-nest.svg" alt="nest" width="22">
+        Nest</a>
+      <a href="#" onclick="showPage('payment', 'PAYMENT', this)"><img src="Images/sidebar-payment.svg" alt="payment"
+          width="22"> Payment</a>
+      <a href="#" onclick="showPage('stash', 'STASH', this)"><img src="Images/sidebar-stash.svg" alt="stash" width="22">
+        Stash</a>
+      <a href="#" onclick="showPage('learn', 'LEARN', this)"><img src="Images/sidebar-learn.svg" alt="learn" width="22">
+        Learn</a>
+      <a href="#" onclick="showPage('referral', 'REFERRAL', this)"><img src="Images/sidebar-referral.svg" alt="Referral"
+          width="22"> Referral</a>
 
-<script src="dashboard.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+      <div class="mt-5 lastsidenav">
+        <p class="" style="font-size: small;">Also on Cowrywise</p>
+        <a href="#" style="font-size: small;"><img src="Images/sproutprofile.svg" alt="sprout" width="22"> Sprout for
+          Business</a>
+        <a href="#" style="font-size: small;"><img src="Images/financekids.svg" alt="finance" width="22"> Finance for
+          Kids</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- HOME PAGE  -->
+  <div class="main-content">
+
+    <!-- Tabs -->
+    <div class="tabs mb-4 " id="homeTabs">
+      <button class="tab-btn active" onclick="switchTab('home', this)">Home</button>
+      <button class="tab-btn" onclick="switchTab('portfolio', this)">Portfolio</button>
+    </div>
+
+    <!-- HOME -->
+    <div class="page-section" id="page-home">
+      <div class="row">
+        <div class="col-lg-7 mb-4">
+          <div class="balance-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div class="d-flex align-items-center gap-1 balance-label">
+                Naira Balance <span>▾</span>
+              </div>
+              <span class="lightning"><img src="Images/starlogo.svg" alt="" width="10">0</span>
+            </div>
+            <div class="balance-amount mt-2">
+              <span class="naira">₦</span><span id="balanceAmount">1,006</span><span class="decimal"
+                id="balanceDecimal">.42</span>
+            </div>
+            <div class="chart-wrap mt-5">
+              <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="chart-svg">
+                <defs>
+                  <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(255,255,255,0.35)" />
+                    <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,80 C40,78 60,65 90,60 C130,53 150,45 190,40 C230,35 260,20 300,15 C330,12 360,8 400,5 L400,100 L0,100 Z"
+                  fill="url(#chartFill)" />
+                <path d="M0,80 C40,78 60,65 90,60 C130,53 150,45 190,40 C230,35 260,20 300,15 C330,12 360,8 400,5"
+                  fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+              </svg>
+            </div>
+            <div class="return-badge">✦ ₦6.42 return in Jun ⌃</div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 mb-4 leftmaincontent">
+          <h6 class="fw-bold mb-3 text-secondary mt-5 fs-5">Add cash</h6>
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="pill-btn">₦ 20K</button>
+            <button class="pill-btn">₦ 50K</button>
+            <button class="pill-btn">₦ 100K</button>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mb-4">
+            <button class="pill-btn">$ 100</button>
+            <button class="pill-btn">$ 200</button>
+            <button class="pill-btn pill-plus">+</button>
+          </div>
+
+          <div class="promo-carousel-wrap">
+            <button class="carousel-arrow arrow-left" onclick="scrollCarousel('promoCarousel', 'left')">‹</button>
+            <div class="promo-carousel" id="promoCarousel">
+              <img src="Images/promo1.png" alt="Promo 1" class="promo-banner">
+              <img src="Images/promo2.png" alt="Promo 2" class="promo-banner">
+              <img src="Images/promo3.png" alt="Promo 3" class="promo-banner">
+              <img src="Images/promo4.png" alt="Promo 4" class="promo-banner">
+            </div>
+            <button class="carousel-arrow arrow-right" onclick="scrollCarousel('promoCarousel', 'right')">›</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-progress mt-2 d-flex justify-content-between align-items-center">
+        <div>
+          <p class="mb-0">Your profile is <strong class="text-primary">50%</strong> complete</p>
+          <p class="text-muted small mb-0">Set up your account for the full experience</p>
+        </div>
+        <span class="chevron">›</span>
+      </div>
+    </div>
+    <!-- HOMEPAGE -->
+
+    <!-- PORTFOLIO (placeholder) -->
+    <div class="page-section d-none" id="page-portfolio">
+      <div class="row gap-5 ms-5 portboxes">
+        <div class="portfoliobox">
+          <div class="growthbox">
+            <p class="fw-bold p-4"> <img src="Images/growth.svg" alt="" width="20"> Growth</p>
+              <div class="text-center mt-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 28 28">
+              <path d="M0 0h28v28H0z" fill="none" />
+              <path fill="#ccc"
+                d="M9 25H3.75a.75.75 0 0 1-.75-.75v-9.5A2.75 2.75 0 0 1 5.75 12H9zm5.75-22a2.75 2.75 0 0 1 2.75 2.75V25h-7V5.75A2.75 2.75 0 0 1 13.25 3zm7.5 5A2.75 2.75 0 0 1 25 10.75v13.5a.75.75 0 0 1-.75.75H19V8z" />
+            </svg>
+            <p class="text-secondary">No data yet</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfoliobox">
+          <div class="earningbox p-4">
+            <div class="d-flex justify-content-between">
+              <p class="fw-bold"> <img src="Images/earnings.svg" alt="" width="20">Earnings</p>
+              <p class="fw-bold"> › </p>
+            </div>
+            <p class="fw-bold mb-4">You haven't earn any returns on your investments in July.</p>
+            <p class="fw-bold fs-3">0%</p>
+            <p class="" style="margin-top: -20px;">change</p>
+
+            <div class="d-flex justify-content-between mt-4">
+              <div class="vr" style="height: 50px; width: 3px;"></div>
+              <p>Jun</p>
+            </div>
+
+            <div class="d-flex justify-content-between mt-2">
+              <div class="vr" style="height: 50px; width: 3px; color: rgb(10, 235, 10);"></div>
+              <p>Jul</p>
+            </div>
+
+            <hr>
+            <small>No earnings this month, invest more to start earning </small>
+          </div>
+        </div>
+
+        <div class="breakdownbox">
+          <p class="fw-bold p-4"> <img src="Images/breakdown.svg" alt="" width="20">Breakdown</p>
+          <div class="progress" style="height: 8px;">
+            <div class="progress-bar bg-dark-subtle" role="progressbar" style="width: 100%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+            </div>
+          </div>
+
+          <div class="d-flex gap-4 mt-3 flex-wrap">
+            <div class="d-flex align-items-center">
+              <span class="legend-box bg-dark-subtle me-2"></span>
+              <small>Stocks: 0%</small>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <span class="legend-box bg-dark-subtle me-2"></span>
+              <small>Investments: 0%</small>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <span class="legend-box bg-dark-subtle me-2"></span>
+              <small>Savings: 0%</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SAVE PAGE  -->
+    <div class="page-section d-none" id="page-save">
+      <div class="savetopcontent d-flex">
+        <p class=" mb-3 text-secondary">Savings Balance</p>
+        <div class="balance-amount mt-4" style="margin-left: -120px;">
+          <span class="naira">₦</span><span id="balanceAmount">0</span><span class="decimal"
+            id="balanceDecimal">.00</span>
+        </div>
+
+        <div>
+          <h6 class="fw-bold mb-3 text-secondary fs-6" style="margin-left: 130px;">Add cash</h6>
+        </div>
+        <div class=" flex-wrap gap-2 mb-5 my-5 cash-amount" style="margin-left: -70px;">
+          <button class="pill-btn">₦ 20K</button>
+          <button class="pill-btn">₦ 50K</button>
+          <button class="pill-btn">₦ 100K</button>
+          <button class="pill-btn">₦ 250K</button>
+          <button class="pill-btn">₦ 500K</button>
+          <button class="pill-btn pill-plus">+</button>
+        </div>
+      </div>
+
+      <div class="">
+        <div class="savebymyself mb-5">
+          <h6 class="fw-bold mt-4 mb-5 fs-">Save by myself</h6>
+          <div class="save-carousel-wrap">
+            <div class="save-card-carousel" id="saveMyselfCarousel">
+              <div class="save-card add-card">
+                <div class="add-icon">+</div>
+              </div>
+
+              <div class="save-card" style="background: transparent; border: 1px solid gainsboro;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/melon.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Melon</p>
+                    <span class="">₦ 0</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#e8f2fc;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/general.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">General</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background: #f5edff;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/emergency.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Emergency</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#dcf0dc;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/savehome.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Home</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#fff5ed;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/study.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Study</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#ffe6eb;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/car.svg" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Car</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-arrow arrow-right"
+              onclick="scrollCarousel('saveMyselfCarousel', 'right')">›</button>
+          </div>
+        </div>
+
+        <div class="savebyothers" style="margin-top: 100px;">
+          <h6 class="fw-bold mt-4 mb-5">Save with others</h6>
+          <div class="save-carousel-wrap">
+            <div class="save-card-carousel" id="saveOthersCarousel">
+              <div class=" add-card">
+                <div class="add-icon">+</div>
+              </div>
+              <div class="save-card" style="background:#ffe6eb;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/moneyduo.png" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">MoneyDuo</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#ebfaeb;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/football.png" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Football</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="save-card" style="background:#fcfaff;">
+                <div class="d-flex save-card-content">
+                  <div class="icon">
+                    <img src="Images/basketball.png" alt="General" class="save-icon-img">
+                  </div>
+
+                  <div class="content">
+                    <p class="save-title">Basketball</p>
+                    <span class="empty-badge">EMPTY</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SAVE PAGE  -->
+
+    <!-- INVEST PAGE  -->
+    <div class="page-section d-none" id="page-invest">
+      <div class="savetopcontent d-flex">
+        <p class=" mb-3 text-secondary">Naira Balance</p>
+        <div class="balance-amount mt-4" style="margin-left: -100px;">
+          <span class="naira">₦</span><span id="balanceAmount">0</span><span class="decimal"
+            id="balanceDecimal">.00</span>
+        </div>
+
+        <div>
+          <h6 class="fw-bold mb-3 text-secondary fs-6" style="margin-left: 130px;">Add cash</h6>
+        </div>
+        <div class=" flex-wrap gap-2 mb-5 my-5 cash-amount" style="margin-left: -70px;">
+          <button class="pill-btn">₦ 20K</button>
+          <button class="pill-btn">₦ 50K</button>
+          <button class="pill-btn">₦ 100K</button>
+          <button class="pill-btn">$ 100</button>
+          <button class="pill-btn">$ 200</button>
+          <button class="pill-btn pill-plus">+</button>
+        </div>
+      </div>
+
+      <h6 class="fw-bold mt-5 mb-3">More to invest in</h6>
+      <div class="d-flex flex-wrap gap-3">
+        <div class="invest-option-card" style="background:#9bf3a7;">
+          <p class="invest-option-title">NG Stocks</p>
+          <img src="Images/imgi_4_stock.webp" alt="NG Stocks" class="invest-option-img">
+        </div>
+        <div class="invest-option-card" style="background:#fdeddb;">
+          <p class="invest-option-title">Naira Mutual Funds</p>
+          <img src="Images/imgi_5_naira_mf.webp" alt="Naira Mutual Funds" class="invest-option-img">
+        </div>
+        <div class="invest-option-card" style="background:#e6e9fb;">
+          <p class="invest-option-title">Dollar Mutual Funds</p>
+          <img src="Images/imgi_6_dollar_mf.webp" alt="Dollar Mutual Funds" class="invest-option-img">
+        </div>
+      </div>
+
+      <p class="text-primary mt-4 fw-bold">Learn more about investments</p>
+    </div>
+
+    <!-- NEST PAGE  -->
+    <div class="page-section d-none" id="page-nest">
+      <h5 class="fw-bold mb-3">Nest</h5>
+      <p class="text-muted">Coming soon.</p>
+    </div>
+    <!-- NEST PAGE  -->
+
+    <!-- PAYMENT PAGE  -->
+    <div class="page-section d-none" id="page-payment">
+      <div class="d-flex justify-content-between">
+        <h2 class="fw-bold mb-3">My Accounts</h2>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+          style="color: white; background-color: blue; border-radius:20px; padding:5px;">
+          <path d="M0 0h24v24H0z" fill="none" />
+          <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M6 12h6m6 0h-6m0 0V6m0 6v6" />
+        </svg>
+      </div>
+
+      <div class="text-center mt-5" style="margin-bottom: 200px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 64 64">
+          <path d="M0 0h64v64H0z" fill="none" />
+          <path fill="#bab8b8"
+            d="M62 24.051v-2.816L31.988 2L2 21.234v2.816l1.635-1.049l.94 1.273L2 25.928v1.875h2.617v1.842H2V32h5.75v1.195h.75V52.75h-.75v1.75h-.5v1.875H5.5v1.875H3.75v1.875H2V62h60v-1.875h-1.75V58.25H58.5v-1.875h-1.75V54.5h-.5v-1.75h-.75V33.195h.75V32H62v-2.355h-2.617v-1.842H62v-1.875l-2.576-1.651l.941-1.273zM9.807 52.02h-.708V33.979h.708zm1.364 0h-.707V33.979h.707zm1.364 0h-.707V33.979h.707zm1.365 0h-.708V33.979h.708zm8.266.791h-.75V54.5H15.25v-1.75h-.75V33.195h.75V32h6.166v1.195h.75zm1.307-.791h-.707V33.979h.707zm1.365 0h-.708V33.979h.708zm1.364 0h-.708V33.979h.708zm1.364 0h-.707V33.979h.707zm8.267.791h-.75V54.5h-6.167v-1.689h-.75V33.195h.75V32h6.167v1.195h.75zm1.307-.791h-.707V33.979h.707zm1.365 0h-.708V33.979h.708zm1.364 0h-.708V33.979h.708zm1.364 0h-.707V33.979h.707zm8.267.73h-.75v1.75h-6.167v-1.689h-.75V33.195h.75V32h6.167v1.195h.75zm1.307-.73h-.708V33.979h.708zm1.364 0h-.707V33.979h.707zm1.364 0h-.707V33.979h.707zm1.365 0h-.708V33.979h.708zm2.483-22.375H6.617v-1.842h50.766zM7.082 25.928L31.988 9.482l24.93 16.445H7.082zm50.655-2.733L31.988 6.691L6.262 23.193l-.94-1.273L31.988 4.814l26.689 17.107z" />
+          <path fill="#bab8b8"
+            d="M32.352 22.875a.25.25 0 0 0-.225-.152h-.252a.25.25 0 0 0-.225.152l-.402-.232l-.966-.553v2.21l.966-.553l.402-.23c.04.09.125.152.225.152h.252a.25.25 0 0 0 .225-.152l.402.23l.964.553v-2.21l-.964.553zm.502-2.795a2 2 0 0 1-.853.189a2 2 0 0 1-.853-.188a1.6 1.6 0 0 1-.648-.564c-.035.295.117.619.403.846c.281.23.689.367 1.099.365c.408.002.817-.133 1.098-.365c.285-.227.438-.551.402-.846a1.55 1.55 0 0 1-.648.563" />
+          <path fill="#bab8b8"
+            d="M28.104 16.266a1.4 1.4 0 0 0-.334.125c-.035.018-.043.029-.043.092v.082c0 .15-.018.092.09.154a.4.4 0 0 1 .098.08c-.1.361-.153.744-.153 1.139a4.238 4.238 0 1 0 8.322-1.141a.5.5 0 0 1 .099-.078c.109-.063.09-.004.09-.154v-.082c0-.063-.006-.074-.041-.092c-.059-.029-.12-.059-.182-.08a2 2 0 0 0-.152-.045a4.24 4.24 0 0 0-3.896-2.568a4.24 4.24 0 0 0-3.898 2.568m7.633 1.588l.001.084a3.738 3.738 0 1 1-7.477 0l.001-.084c.133.5.428.822.871.99a2.05 2.05 0 0 0 1.477-.018c.26-.102.486-.266.666-.529c.315-.465.22-.754.383-1.152c.143-.346.541-.346.684 0c.162.398.068.688.383 1.152c.18.264.407.428.665.529a2.06 2.06 0 0 0 1.478.018c.442-.168.736-.49.868-.99M32 14.199c1.426 0 2.666.799 3.295 1.973a8.5 8.5 0 0 0-1.387-.008q-.785.069-1.32.346a1.43 1.43 0 0 1-1.174 0q-.537-.277-1.322-.346a8.5 8.5 0 0 0-1.386.008A3.73 3.73 0 0 1 32 14.199" />
+        </svg>
+        <p class="fw-bold fs-4 text-secondary">You haven't added an account. Tap the plus(+) icon above to add one</p>
+      </div>
+    </div>
+    <!-- PAYMENT PAGE  -->
+    <div class="page-section d-none" id="page-stash">
+      <h5 class="fw-bold mb-3">Stash</h5>
+      <p class="text-muted">Coming soon.</p>
+    </div>
+
+    <!-- LEARN PAGE  -->
+    <div class="page-section d-none" id="page-learn">
+      <h5 class="fw-bold mb-3">Learn</h5>
+      <p class="text-muted">Coming soon.</p>
+    </div>
+    <!-- LEARN PAGE  -->
+    <div class="page-section d-none" id="page-referral">
+      <h5 class="fw-bold mb-3">Referral</h5>
+      <p class="text-muted">Coming soon.</p>
+    </div>
+
+  </div>
+
+  </div>
+
+  <script src="dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 </body>
+
 </html>

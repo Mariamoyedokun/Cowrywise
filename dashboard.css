@@ -3,9 +3,22 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "Quicksand", sans-serif;
   background-color: #f5f7ff;
   margin: 0;
+  overflow-x: hidden;
+}
+
+.topnav {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lastcontent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* Top bar — hidden on desktop, shown on mobile */
@@ -22,44 +35,59 @@ body {
   font-size: 28px;
   cursor: pointer;
 }
-.lastcontent{
-  /* margin-left: 500px; */
-  /* align-items: end; */
-}
 
 /* Sidebar */
-.logo{
+.logo {
   width: 35px;
   margin-top: -10px;
   margin-left: 60px;
 }
+
 .sidenav {
   margin-left: 50px;
   height: 100vh;
-  width: 220px;
+  width: 160px;
   position: fixed;
   top: 0;
   left: 0;
-  /* background-color: #fff; */
-  border-right: 1px solid #eee;
+  /* border-right: 1px solid #eee; */
   padding-top: 30px;
   transition: transform 0.3s ease;
   z-index: 2;
 }
 
+.seed {
+  font-size: 0.9rem;
+  color: #7e3446;
+  font-weight: 600;
+}
+
+.head {
+  margin: auto;
+}
+
+.notif {
+  margin-left: 25px;
+  margin-right: 30px;
+}
+
 .greeting {
   padding: 0 24px 20px;
   color: #999;
-  font-size: 19px;
+  font-size: 16px;
   margin-top: 50px;
 }
 
 .sidenav a {
   padding: 12px 24px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 15px;
   color: #555;
   display: block;
+}
+
+.lastsidenav {
+  margin-top: 150px !important;
 }
 
 .sidenav a:hover {
@@ -76,6 +104,20 @@ body {
 .main-content {
   margin-left: 220px;
   padding: 30px;
+  background-color: white;
+  margin-top: 60px;
+  border-radius: 20px;
+  max-width: calc(100% - 250px);
+  width: auto;
+}
+
+.page-section {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.page-section .row {
+  margin: 0;
 }
 
 /* Overlay - invisible and inactive by default */
@@ -83,14 +125,50 @@ body {
   display: none;
 }
 
-/* ---- Mobile styles ---- */
+/* ---- Responsive styles ---- */
+@media screen and (max-width: 1200px) {
+  .main-content {
+    margin-left: 190px;
+    max-width: calc(100% - 210px);
+    padding: 24px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .sidenav {
+    width: 150px;
+  }
+
+  .main-content {
+    margin-left: 170px;
+    max-width: calc(100% - 190px);
+    padding: 20px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .topbar {
     display: flex;
   }
 
+  .seed {
+    display: none;
+  }
+
+  .topnav {
+    margin-top: -50px !important;
+    align-items: center;
+  }
+
+  .lastcontent {
+    margin-left: auto;
+  }
+
   .sidenav {
     transform: translateX(-100%);
+    margin-left: 0;
+    background-color: #f5f7ff;
+    width: 220px;
   }
 
   .sidenav.open {
@@ -99,6 +177,10 @@ body {
 
   .main-content {
     margin-left: 0;
+    margin-top: 24px;
+    padding: 16px;
+    max-width: 100%;
+    border-radius: 16px;
   }
 
   .overlay.active {
@@ -111,4 +193,364 @@ body {
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
+}
+
+@media screen and (max-width: 576px) {
+  .topnav {
+    margin-top: -50px !important;
+  }
+
+  .head {
+    font-size: 0.95rem;
+    margin-left: 98px;
+  }
+
+  #profileDropdown{
+    margin-left: -25px;
+  }
+  
+  .portboxes{
+    margin-right: 30px !important;
+  }
+
+  .savetopcontent{
+    flex-direction: column;
+    /* margin-left: 150px !important; */
+  }
+  .balance-amount{
+    margin-left: 5px !important;
+    margin-top: -20px !important;
+  }
+  .cash-amount{
+    margin-left: 10px !important;
+  }
+  .pill-btn{
+    margin-bottom: 12px;
+  }
+  .tabs {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 8px 12px;
+  }
+
+  .balance-card {
+    min-height: 220px;
+    padding: 18px;
+  }
+
+  .chart-wrap {
+    margin-top: 48px !important;
+  }
+
+  .pill-btn {
+    width: calc(50% - 8px);
+    justify-content: center;
+  }
+
+  .pill-plus {
+    width: 42px;
+  }
+
+  .promo-banner {
+    flex-basis: 85%;
+    width: 85%;
+  }
+
+  .profile-progress {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Tabs */
+.tabs {
+  display: inline-flex;
+  background: #eef0f5;
+  border-radius: 30px;
+  padding: 4px;
+}
+
+.tab-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: #fff;
+  color: #1a1a2e;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Balance card */
+.balance-card {
+  background: linear-gradient(180deg, #2f6bff, #1a4de0);
+  border-radius: 20px;
+  padding: 24px;
+  color: #fff;
+  min-height: 260px;
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  min-height: 320px;
+  margin-top: 30px;
+}
+
+.balance-label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.balance-amount {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+}
+
+.naira {
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.decimal {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.leftmaincontent {
+  margin-left: 0;
+}
+
+/* Chart */
+.chart-wrap {
+  height: 100px;
+  width: 100%;
+  margin-top: 100px !important;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.return-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* Add cash pills */
+.pill-btn {
+  border: 1px solid #ddd;
+  background: rgb(243, 241, 241);
+  border-radius: 30px;
+  padding: 10px 18px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  text-spacing-trim: space-first;
+}
+
+.pill-plus {
+  width: 42px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+/* Promo carousel */
+.promo-carousel-wrap {
+  position: relative;
+}
+
+.promo-carousel {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.promo-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.promo-banner {
+  flex: 0 0 min(70%, 280px);
+  scroll-snap-align: start;
+  border-radius: 16px;
+  min-height: 140px;
+  width: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.carousel-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Profile completion */
+.profile-progress {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 600px;
+}
+
+.chevron {
+  font-size: 1.3rem;
+  color: #999;
+}
+
+.arrow-left {
+  left: 8px;
+  right: auto;
+}
+
+/* SAVE PAGE  */
+.save-icon-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.save-card-content{
+  margin-top: 10px;
+}
+.save-carousel-wrap {
+  position: relative;
+  margin-bottom: 24px;
+}
+.save-card-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.save-card-carousel::-webkit-scrollbar {
+  display: none;
+}
+.save-card {
+  flex: 0 0 180px;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  padding: 20px;
+  padding-right: 150px;
+  height: 110px;
+  position: relative;
+}
+.add-card {
+  background: #f5f6fa;
+  border: 1px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+}
+.add-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #2952e3;
+}
+.save-title {
+  font-weight: 600;
+  color: #1a1a2e;
+  margin-bottom: 6px;
+}
+.empty-badge {
+  background-color: white;
+  color: #888;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 5px;
+}
+
+/* Invest page  */
+.invest-option-card {
+  flex: 0 0 220px;
+  border-radius: 16px;
+  padding: 2px;
+  min-height: 180px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
+}
+.invest-option-title {
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+}
+.invest-option-img {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
+  margin-top: 10px;
+  display: block;
+}
+.portfoliobox{
+  border: 1px solid rgb(219, 217, 217);
+  width: 550px;
+  height: 430px;
+  border-radius: 30px;
+}
+.breakdownbox{
+  border: 1px solid rgb(219, 217, 217);
+  width: 550px;
+  height: 200px;
+  border-radius: 30px;
+  /* margin-bottom: 50px; */
+}
+.progress{
+  border-radius: 20px;
+}
+.progress-bar{
+  border-radius: 20px;
+}
+.legend-box{
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  border-radius: 2px;
 }
