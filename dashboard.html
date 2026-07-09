@@ -51,16 +51,18 @@
         Save</a>
       <a href="#" onclick="showPage('invest', 'INVEST', this)"><img src="Images/sidebar-invest.svg" alt="invest"
           width="22"> Invest</a>
-      <a href="#" onclick="showPage('nest', 'NEST', this)"><img src="Images/sidebar-nest.svg" alt="nest" width="22">
+      <a href="#" data-bs-toggle="modal" data-bs-target="#nestModal"><img src="Images/sidebar-nest.svg" alt="nest" width="22">
         Nest</a>
       <a href="#" onclick="showPage('payment', 'PAYMENT', this)"><img src="Images/sidebar-payment.svg" alt="payment"
           width="22"> Payment</a>
-      <a href="#" onclick="showPage('stash', 'STASH', this)"><img src="Images/sidebar-stash.svg" alt="stash" width="22">
+      <a href="#" onclick="showPage('stash', 'STASH', this)"><img src="Images/sidebar-stash.svg" alt="stash"
+          width="22">
         Stash</a>
-      <a href="#" onclick="showPage('learn', 'LEARN', this)"><img src="Images/sidebar-learn.svg" alt="learn" width="22">
+      <a href="#" onclick="showPage('learn', 'EXPLORE', this)"><img src="Images/sidebar-learn.svg" alt="learn"
+          width="22">
         Learn</a>
-      <a href="#" onclick="showPage('referral', 'REFERRAL', this)"><img src="Images/sidebar-referral.svg" alt="Referral"
-          width="22"> Referral</a>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#referralModal"><img src="Images/sidebar-referral.svg"
+          alt="Referral" width="22"> Referral</a>
 
       <div class="mt-5 lastsidenav">
         <p class="" style="font-size: small;">Also on Cowrywise</p>
@@ -151,21 +153,21 @@
         <span class="chevron">›</span>
       </div>
     </div>
-    <!-- HOMEPAGE -->
+    <!-- HOME -->
 
-    <!-- PORTFOLIO (placeholder) -->
+    <!-- PORTFOLIO PAGE -->
     <div class="page-section d-none" id="page-portfolio">
       <div class="row gap-5 ms-5 portboxes">
         <div class="portfoliobox">
           <div class="growthbox">
             <p class="fw-bold p-4"> <img src="Images/growth.svg" alt="" width="20"> Growth</p>
-              <div class="text-center mt-5">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 28 28">
-              <path d="M0 0h28v28H0z" fill="none" />
-              <path fill="#ccc"
-                d="M9 25H3.75a.75.75 0 0 1-.75-.75v-9.5A2.75 2.75 0 0 1 5.75 12H9zm5.75-22a2.75 2.75 0 0 1 2.75 2.75V25h-7V5.75A2.75 2.75 0 0 1 13.25 3zm7.5 5A2.75 2.75 0 0 1 25 10.75v13.5a.75.75 0 0 1-.75.75H19V8z" />
-            </svg>
-            <p class="text-secondary">No data yet</p>
+            <div class="text-center mt-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 28 28">
+                <path d="M0 0h28v28H0z" fill="none" />
+                <path fill="#ccc"
+                  d="M9 25H3.75a.75.75 0 0 1-.75-.75v-9.5A2.75 2.75 0 0 1 5.75 12H9zm5.75-22a2.75 2.75 0 0 1 2.75 2.75V25h-7V5.75A2.75 2.75 0 0 1 13.25 3zm7.5 5A2.75 2.75 0 0 1 25 10.75v13.5a.75.75 0 0 1-.75.75H19V8z" />
+              </svg>
+              <p class="text-secondary">No data yet</p>
             </div>
           </div>
         </div>
@@ -198,7 +200,8 @@
         <div class="breakdownbox">
           <p class="fw-bold p-4"> <img src="Images/breakdown.svg" alt="" width="20">Breakdown</p>
           <div class="progress" style="height: 8px;">
-            <div class="progress-bar bg-dark-subtle" role="progressbar" style="width: 100%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bg-dark-subtle" role="progressbar" style="width: 100%;" aria-valuenow="70"
+              aria-valuemin="0" aria-valuemax="100">
             </div>
           </div>
 
@@ -222,6 +225,7 @@
 
       </div>
     </div>
+    <!-- PORTFOLIO PAGE  -->
 
     <!-- SAVE PAGE  -->
     <div class="page-section d-none" id="page-save">
@@ -431,6 +435,7 @@
 
       <p class="text-primary mt-4 fw-bold">Learn more about investments</p>
     </div>
+    <!-- INVEST PAGE  -->
 
     <!-- NEST PAGE  -->
     <div class="page-section d-none" id="page-nest">
@@ -465,6 +470,7 @@
       </div>
     </div>
     <!-- PAYMENT PAGE  -->
+
     <div class="page-section d-none" id="page-stash">
       <h5 class="fw-bold mb-3">Stash</h5>
       <p class="text-muted">Coming soon.</p>
@@ -472,15 +478,226 @@
 
     <!-- LEARN PAGE  -->
     <div class="page-section d-none" id="page-learn">
-      <h5 class="fw-bold mb-3">Learn</h5>
-      <p class="text-muted">Coming soon.</p>
+      <div class="learntopcontent d-flex justify-content-between">
+        <h3 class="fw-bold">Start Learning</h3>
+        <button class="playlistbtn rounded-5 px-3 border-0"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+            height="1em" viewBox="0 0 8 8">
+            <path d="M0 0h8v8H0z" fill="none" />
+            <path fill="currentColor" d="M1 8V7h6V3h1v5M0 6V0h6v6M2 1v4l2.5-2" />
+          </svg>
+          Playlists</button>
+      </div>
+
+      <div class="learnmiddlecontent mt-5">
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold">Learn in 60 seconds</p>
+          <p class="fw-bold" style="color: #334ec9;">Watch more <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+              height="1em" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <g fill="none" fill-rule="evenodd">
+                <path
+                  d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                <path fill="#334ec9"
+                  d="M15.707 11.293a1 1 0 0 1 0 1.414l-5.657 5.657a1 1 0 1 1-1.414-1.414l4.95-4.95l-4.95-4.95a1 1 0 0 1 1.414-1.414z" />
+              </g>
+            </svg>
+          </p>
+        </div>
+
+        <div class="learn-row">
+
+          <a class="learn-card"
+            href="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/LearnVideos%2FCowrywise_App_Update_InApp_Landscape_Compressed.mp4?alt=media&token=df94f387-2eb2-4702-b46b-3c227026c677"
+            target="_blank" rel="noopener">
+            <div class="card-thumb">
+              <img src="Images/januaryupdate.png" alt="January 2025 Update">
+              <span class="card-tag">#UPDATES</span>
+              <div class="play-btn"><img src="Images/playbutton.svg" alt="Play"></div>
+            </div>
+            <div class="card-footer">
+              <p class="card-title">January 2025<br>Update</p>
+            </div>
+          </a>
+
+          <a class="learn-card"
+            href="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/LearnVideos%2FStocks%20Playlist%2FLandscape%20%5BWeb%5D%2FCOWRYWISE_STOCK%20COURSE_EP7.mp4?alt=media&token=8e81be23-5667-4224-9457-c3fffb1ec651"
+            target="_blank" rel="noopener">
+            <div class="card-thumb">
+              <img src="Images/stockinvest7.png" alt="Stock Investing 7">
+              <span class="card-tag">#INVESTING</span>
+              <div class="play-btn"><img src="Images/playbutton.svg" alt="Play"></div>
+            </div>
+            <div class="card-footer">
+              <p class="card-title">Stock Investing 7</p>
+            </div>
+          </a>
+
+          <a class="learn-card"
+            href="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/LearnVideos%2FStocks%20Playlist%2FLandscape%20%5BWeb%5D%2FCOWRYWISE_STOCK%20COURSE_EP1.mp4?alt=media&token=62c3603c-ef4e-42d9-84c1-c683c84e6e5d"
+            target="_blank" rel="noopener">
+            <div class="card-thumb">
+              <img src="Images/stockinvest1.png" alt="Stock Investing 1">
+              <span class="card-tag">#INVESTING</span>
+              <div class="play-btn"><img src="Images/playbutton.svg" alt="Play"></div>
+            </div>
+            <div class="card-footer">
+              <p class="card-title">Stock Investing 1</p>
+            </div>
+          </a>
+
+          <a class="learn-card"
+            href="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/LearnVideos%2FStocks%20Playlist%2FLandscape%20%5BWeb%5D%2FCOWRYWISE_STOCK%20COURSE_EP2.mp4?alt=media&token=2d3dc14c-fba6-40a2-8360-ef952f41675e"
+            target="_blank" rel="noopener">
+            <div class="card-thumb">
+              <img src="Images/stockinvest2.png" alt="Stock Investing 2">
+              <span class="card-tag">#INVESTING</span>
+              <div class="play-btn"><img src="Images/playbutton.svg" alt="Play"></div>
+            </div>
+            <div class="card-footer">
+              <p class="card-title">Stock Investing 2</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+      <div class="learnlastcontent mt-5">
+        <div class="d-flex justify-content-between">
+          <p class="fw-bold">Have a quick read</p>
+          <p class="fw-bold" style="color: #334ec9;">Read more <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+              height="1em" viewBox="0 0 24 24">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <g fill="none" fill-rule="evenodd">
+                <path
+                  d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
+                <path fill="#334ec9"
+                  d="M15.707 11.293a1 1 0 0 1 0 1.414l-5.657 5.657a1 1 0 1 1-1.414-1.414l4.95-4.95l-4.95-4.95a1 1 0 0 1 1.414-1.414z" />
+              </g>
+            </svg>
+          </p>
+        </div>
+
+        <div class="article-row">
+
+          <a class="article-card"
+            href="https://cowrywise.com/blog/cowrywise-and-yellow-cowries-partner-to-launch-a-financial-education-app-for-kids/"
+            target="_blank" rel="noopener">
+            <div class="article-thumb">
+              <img src="Images/building edu.png" alt="Building A Financial Education App for Kids">
+            </div>
+            <div class="article-body">
+              <p class="article-title">Building A Financial Education App for Kids – A Tale of Two Cowries Closing the
+                Childhood Literacy Gap</p>
+              <p class="article-date">September 25th 2025 · 17 minutes</p>
+            </div>
+          </a>
+
+          <a class="article-card"
+            href="https://cowrywise.com/blog/why-the-nigerian-stock-market-is-booming-and-what-it-means-for-your-money/"
+            target="_blank" rel="noopener">
+            <div class="article-thumb">
+              <img src="Images/stockmarket.webp" alt="Why the Nigerian Stock Market Is Booming">
+            </div>
+            <div class="article-body">
+              <p class="article-title">Why the Nigerian Stock Market Is Booming And What It Means for Your Money</p>
+              <p class="article-date">August 7th 2025 · 4 minutes</p>
+            </div>
+          </a>
+
+          <a class="article-card" href="https://cowrywise.com/blog/what-are-stocks-2/" target="_blank" rel="noopener">
+            <div class="article-thumb">
+              <img src="images/stockreally.webp" alt="What Stocks Really Are">
+            </div>
+            <div class="article-body">
+              <p class="article-title">What Stocks Really Are, And Why You Don't Need Millions to Start</p>
+              <p class="article-date">June 30th 2025 · 3 minutes</p>
+            </div>
+          </a>
+
+          <a class="article-card"
+            href="https://cowrywise.com/blog/investing-for-kids-is-within-reach-of-every-parent-with-nest/"
+            target="_blank" rel="noopener">
+            <div class="article-thumb">
+              <img src="images/nest.webp" alt="Investing for kids is within reach">
+            </div>
+            <div class="article-body">
+              <p class="article-title">Investing for kids is within reach of every parent with Nest</p>
+              <p class="article-date">April 14th 2025 · 8 minutes</p>
+            </div>
+          </a>
+
+        </div>
+      </div>
     </div>
     <!-- LEARN PAGE  -->
-    <div class="page-section d-none" id="page-referral">
-      <h5 class="fw-bold mb-3">Referral</h5>
-      <p class="text-muted">Coming soon.</p>
-    </div>
 
+    <!--REFERRAL Modal -->
+    <div class="modal fade referral-modal" id="referralModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          <img src="Images/giftbox.svg" alt="Gift" class="gift-icon">
+
+          <h4 class="referral-title">Get fee waivers</h4>
+
+          <p class="referral-desc">
+            Enjoy zero fees on Naira investments when your friends signup, save/invest a minimum of NGN 5,000 with your
+            referral code.
+          </p>
+
+          <a href="#" class="terms-link"><i class="bi bi-info-circle-fill"></i>Read terms and conditions</a>
+
+          <div class="referral-actions">
+            <button class="referral-code" onclick="copyReferralCode()">
+              MARIAEJR
+              <i class="bi bi-copy"></i>
+            </button>
+
+            <a href="https://twitter.com/intent/tweet?text=Use my referral code MARIAEJR on Cowrywise" target="_blank"
+              rel="noopener" class="social-icon">
+              <img src="Images/twitter.svg" alt="" width="20">
+            </a>
+
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://cowrywise.com" target="_blank" rel="noopener"
+              class="social-icon">
+              <img src="Images/facebook.svg" alt="" width="20">
+            </a>
+          </div>
+
+          <a href="referral-performance.html" class="view-performance">View referral performance</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- REFERRAL PAGE  -->
+
+    <!-- NEST MODAL  -->
+     <div class="modal fade referral-modal" id="nestModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-5">
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+          <img src="Images/MEETNEST.svg" alt="NEST" class="w-50">
+
+          <h4 class="fw-bold mt-5">Meet Nest</h4>
+
+          <p class="">
+            A secure investmwnt account that grows with your little one.
+          </p>
+          <ul class="fw-bold">
+            <li>Start with just your child's name and date of birth.</li>
+            <li>Unlocks on their 18th birthday so you can transfer it to them.</li>
+          </ul>
+            <button class="mt-5 py-2 bg-primary border-0 text-white">Start Their Journey</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+     <!-- NEST MODAL  -->
   </div>
 
   </div>
