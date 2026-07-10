@@ -212,6 +212,7 @@
     const fund = () => {
         const inputValue = amountInput.value.trim();
         const amount = Number(inputValue);
+        //  localStorage.setItem('walletBalance', 0)
 
         display.innerHTML = '';
         show.innerHTML = '';
@@ -238,6 +239,8 @@
                 currency: 'NGN',
                 ref: '' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function (response) {
+                    const current = parseFloat(localStorage.getItem('walletBalance')) || 0;
+                    localStorage.setItem('walletBalance', current + amount);
                     document.getElementById('successOverlay').style.display = 'flex';
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';

@@ -433,6 +433,7 @@
                         <p class="text-muted" style="font-weight: 600; font-size: small;">By tapping on Create Account,
                             you agree to our <span style="color: #0014f5;">Terms and Conditions</span> and <span
                                 style="color: #0014f5;">Privacy Policy</span></p>
+                                <div id="createAccountError"></div>
                     </div>
 
                     <button type="button" onclick="createAccount()" class="btn btn-primary" id="checkBtn"
@@ -478,66 +479,100 @@
     </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-    const toggleIcon = document.querySelector('.password-toggle');
-    const passwordInput = document.getElementById('floatingPassword');
+  const firebaseConfig = {
+    apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
+    authDomain: "cowrywise-clone.firebaseapp.com",
+    projectId: "cowrywise-clone",
+    storageBucket: "cowrywise-clone.firebasestorage.app",
+    messagingSenderId: "940816539570",
+    appId: "1:940816539570:web:59529e90f09db5343eceab"
+  };
 
-    toggleIcon.addEventListener('click', function () {
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-        if (passwordInput.type === 'password') {
-            // If it's hidden, make it text (visible)
-            passwordInput.type = 'text';
-        } else {
-            // If it's visible, make it hidden again
-            passwordInput.type = 'password';
-        }
-    })
+  // --- password toggle ---
+  const toggleIcon = document.querySelector('.password-toggle');
+  const passwordInput = document.getElementById('floatingPassword');
 
-    function showInput() {
-        // console.log('yeeeeee');
-        const showButton = document.getElementById('showValue')
-        const hiddenInput = document.getElementById("hiddenInput")
+  toggleIcon.addEventListener('click', function () {
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+  });
 
-        hiddenInput.setAttribute("class", "d-inline form-floating p-3 input-field-full-responsive mt-4")
-        showButton.setAttribute('class', 'd-none')
+  // --- invite code toggle ---
+  window.showInput = function () {
+    const showButton = document.getElementById('showValue');
+    const hiddenInput = document.getElementById("hiddenInput");
+    hiddenInput.setAttribute("class", "d-inline form-floating p-3 input-field-full-responsive mt-4");
+    showButton.setAttribute('class', 'd-none');
+  };
+
+  // --- halal info modal ---
+  const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+  document.getElementById('infoBtn').addEventListener('click', () => {
+    infoModal.show();
+  });
+
+  // --- prefill email from sign-up.html ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedValue = localStorage.getItem('sharedValue');
+    if (savedValue) {
+      const parts = savedValue.split('@');
+      document.getElementById('email').value = "@" + parts[0];
     }
+  });
 
-    const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+  // --- enable Create Account button once all fields are filled ---
+  const inputs = document.querySelectorAll('input:not(#hiddenInput)');
+  const btn = document.getElementById('checkBtn');
 
-    document.getElementById('infoBtn').addEventListener('click', () => {
-        infoModal.show();
-    });
+  function checkInputs() {
+    const allFilled = [...inputs].every(input => input.value.trim() !== '');
+    btn.disabled = !allFilled;
+  }
+  inputs.forEach(input => input.addEventListener('input', checkInputs));
 
+  // --- create account with Firebase ---
+  window.createAccount = async function () {
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = localStorage.getItem('sharedValue');
+    const password = document.getElementById('floatingPassword').value;
+    const errorBox = document.getElementById('createAccountError');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedValue = localStorage.getItem('sharedValue');
+    errorBox.innerHTML = '';
+    btn.disabled = true;
+    btn.textContent = 'Creating account...';
 
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-        if (savedValue) {
-            //    document.getElementById('email').value = savedValue
-            const parts = savedValue.split('@');
-            const newFormat = "@" + parts[0]
+      localStorage.setItem('firstName', firstName);
+      localStorage.setItem('lastName', lastName);
+      localStorage.setItem('walletBalance', 0);
 
-            document.getElementById('email').value = newFormat;
-        }
-    })
+      window.location.href = 'welcome.html';
+    } catch (error) {
+      let message = 'Something went wrong. Please try again.';
 
-    const inputs = document.querySelectorAll('input:not(#hiddenInput)');
-    const btn = document.getElementById('checkBtn');
+      if (error.code === 'auth/email-already-in-use') {
+        message = 'That email is already registered. Try logging in instead.';
+      } else if (error.code === 'auth/weak-password') {
+        message = 'Password should be at least 6 characters.';
+      }
 
-    function checkInputs() {
-        const allFilled = [...inputs].every(input => input.value.trim() !== '');
-        btn.disabled = !allFilled;
+      errorBox.innerHTML = `<div class="alert p-2 text-danger text-center bg-danger-subtle border-danger" role="alert" style="font-size:small; margin-top: 10px;">*${message}</div>`;
+      setTimeout(() => {
+        errorBox.innerHTML = '';
+      }, 3000);
+
+      btn.disabled = false;
+      btn.textContent = 'Create Account';
     }
-
-    inputs.forEach(input => input.addEventListener('input', checkInputs));
-
-    function createAccount() {
-        const firstName = document.getElementById('firstName').value;
-        localStorage.setItem('firstName', firstName);
-        window.location.href = 'welcome.html';
-    }
+  };
 </script>
-
 </html>

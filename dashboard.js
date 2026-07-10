@@ -75,4 +75,13 @@ window.onload = function() {
     document.getElementById("balanceAmount").textContent = Number(whole).toLocaleString();
     document.getElementById("balanceDecimal").textContent = "." + decimal;
   }
+
+  const firstName = localStorage.getItem("firstName") || "";
+
+  // random greeting
+  const greetings = ["Hey there", "Hi there", "Hello there", "Welcome back", "Good to see you", "Howdy"];
+  const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+  document.getElementById("greetingWord").textContent = randomGreeting;
+  document.getElementById("greetingName").textContent = firstName;
 };

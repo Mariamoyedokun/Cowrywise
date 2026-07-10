@@ -210,6 +210,7 @@
 <script>
     const fund = () => {
         const input = document.getElementById('amountInput').value
+        // localStorage.setItem('walletBalance', 0)
 
         if (input === '') {
             display.innerHTML = `<div class= "alert p-2 text-danger text-left text-center bg-danger-subtle border-danger " role="alert" style="font-size:small">*Please fill in the empty input!</div>`
@@ -231,6 +232,8 @@
                 currency: 'NGN',
                 ref: '' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function (response) {
+                    const current = parseFloat(localStorage.getItem('walletBalance')) || 0;
+                    localStorage.setItem('walletBalance', current + Number(input));
                     // alert('Payment successful! Reference: ' + response.reference);
                     document.getElementById('successOverlay').style.display = 'flex';
                     setTimeout(() => {

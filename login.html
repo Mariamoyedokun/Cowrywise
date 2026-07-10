@@ -184,7 +184,7 @@
                 <div class="login-card">
 
                     <div class="d-flex flex-column flex-sm-row gap-3 mb-4 sign-in-btns">
-                        <button class="signinbtn"><img src="Images/download (1).svg" alt="" height="20">Sign in with
+                        <button class="signinbtn" onclick="signInWithGoogle()"><img src="Images/download (1).svg" alt="" height="20">Sign in with
                             Google</button>
                         <button class="signinbtn"><img src="Images/download (2).svg" alt="" height="20">Sign in with
                             Apple</button>
@@ -312,118 +312,184 @@
         style="border-radius: 50%; cursor: pointer;">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-       function signIn() {
-    const floatingInput = document.getElementById('floatingInput').value;
-    const floatingPassword = document.getElementById('floatingPassword').value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passPattern = /^[a-zA-Z0-9_!@#$%^&*()\-+=[\]{}|;:'",.<>/?]{8,}$/;
-    const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+  import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-    if (floatingInput === '') {
-        message.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please fill in the empty input!</div>`;
-        setTimeout(() => { message.style.display = 'none'; }, 1500);
-    }
-    else if (!emailPattern.test(floatingInput)) {
-        show.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please use a valid format!</div>`;
-        setTimeout(() => { show.style.display = 'none'; }, 1500);
-    }
-    else if (floatingPassword === '') {
-        messagePass.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please fill in the empty input!</div>`;
-        setTimeout(() => { messagePass.style.display = 'none'; }, 1500);
-    }
-    else if (!passPattern.test(floatingPassword)) {
-        showPass.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please enter a valid format!</div>`;
-        setTimeout(() => { showPass.style.display = 'none'; }, 1500);
-    }
-    else {
-        infoModal.show();
-    }
-}
+  const firebaseConfig = {
+    apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
+    authDomain: "cowrywise-clone.firebaseapp.com",
+    projectId: "cowrywise-clone",
+    storageBucket: "cowrywise-clone.firebasestorage.app",
+    messagingSenderId: "940816539570",
+    appId: "1:940816539570:web:59529e90f09db5343eceab"
+  };
 
-// Password toggle
-const toggleIcon = document.querySelector('.password-toggle');
-const passwordInput = document.getElementById('floatingPassword');
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
 
-toggleIcon.addEventListener('click', function () {
-    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-});
+window.signIn = async function () {
+      const floatingInput = document.getElementById('floatingInput').value;
+      const floatingPassword = document.getElementById('floatingPassword').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const passPattern = /^[a-zA-Z0-9_!@#$%^&*()\-+=[\]{}|;:'",.<>/?]{8,}$/;
+      const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
 
-// PIN logic
-const createInputs = document.querySelectorAll('.create-pin-inputs .input-box');
-const confirmInputs = document.querySelectorAll('.confirm-pin-inputs .input-box');
-const createPinBtn = document.getElementById('createPinBtn');
+      if (floatingInput === '') {
+          message.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please fill in the empty input!</div>`;
+          setTimeout(() => { message.style.display = 'none'; }, 1500);
+          return;
+      }
+      else if (!emailPattern.test(floatingInput)) {
+          show.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please use a valid format!</div>`;
+          setTimeout(() => { show.style.display = 'none'; }, 1500);
+          return;
+      }
+      else if (floatingPassword === '') {
+          messagePass.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please fill in the empty input!</div>`;
+          setTimeout(() => { messagePass.style.display = 'none'; }, 1500);
+          return;
+      }
+      else if (!passPattern.test(floatingPassword)) {
+          showPass.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Please enter a valid format!</div>`;
+          setTimeout(() => { showPass.style.display = 'none'; }, 1500);
+          return;
+      }
 
-createPinBtn.disabled = true;
+      try {
+          const userCredential = await signInWithEmailAndPassword(auth, floatingInput, floatingPassword);
+          const user = userCredential.user;
 
-function getPinValue(inputs) {
-    return Array.from(inputs).map(i => i.value).join('');
-}
+          localStorage.setItem('sharedValue', user.email);
+          if (!localStorage.getItem('walletBalance')) {
+              localStorage.setItem('walletBalance', 0);
+          }
 
-function checkPinsReady() {
-    const createPin = getPinValue(createInputs);
-    const confirmPin = getPinValue(confirmInputs);
-    createPinBtn.disabled = !(createPin.length === 4 && confirmPin.length === 4);
-}
+          infoModal.show();
+      } catch (error) {
+          let errorMessage = 'Something went wrong. Please try again.';
 
-function setupPinRow(inputs) {
-    inputs.forEach((input) => {
-        input.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^0-9]/g, '');
-            if (e.target.value && input.nextElementSibling) {
-                input.nextElementSibling.focus();
-            }
-            checkPinsReady();
-        });
+          if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
+              errorMessage = 'Incorrect information provided.';
+          } else if (error.code === 'auth/user-not-found') {
+              errorMessage = 'No account found with this information.';
+          } else if (error.code === 'auth/too-many-requests') {
+              errorMessage = 'Too many attempts. Please try again later.';
+          }
 
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !input.value && input.previousElementSibling) {
-                input.previousElementSibling.focus();
-            }
-        });
-    });
-}
+          showPass.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*${errorMessage}</div>`;
+          setTimeout(() => { showPass.innerHTML = ''; }, 3000);
+      }
+  }
 
-setupPinRow(createInputs);
-setupPinRow(confirmInputs);
+  window.signInWithGoogle = async function () {
+      try {
+          const result = await signInWithPopup(auth, googleProvider);
+          const user = result.user;
 
-createPinBtn.addEventListener('click', () => {
-    const createPin = getPinValue(createInputs);
-    const confirmPin = getPinValue(confirmInputs);
+          const nameParts = (user.displayName || "").split(" ");
+          const firstName = nameParts[0] || "";
+          const lastName = nameParts.slice(1).join(" ") || "";
 
-     if (createPin !== confirmPin) {
-        confirmInputs.forEach(input => {
-            input.style.borderColor = 'red';
-            input.classList.add('shake');
-        });
-        pinError.textContent = 'PINs do not match. Please try again.';
+          localStorage.setItem('firstName', firstName);
+          localStorage.setItem('lastName', lastName);
+          localStorage.setItem('sharedValue', user.email);
 
-        setTimeout(() => {
-            confirmInputs.forEach(input => {
-                input.style.borderColor = '#b3b8c4';
-                input.classList.remove('shake');
-            });
-            pinError.textContent = '';
-        }, 1500);
-        return;
-    }
-    else {
-        confirmInputs.forEach(input => {
-            input.style.borderColor = 'green';
-        });
-        pinSuccess.textContent = 'PIN successfully created';
+          if (!localStorage.getItem('walletBalance')) {
+              localStorage.setItem('walletBalance', 0);
+          }
 
-        setTimeout(() => {
-            confirmInputs.forEach(input => {
-                input.style.borderColor = '#b3b8c4';
-            });
-            pinSuccess.textContent = '';
-        }, 1500); 
-        window.location.href='verifybvn.html'
-    }
-});
-                
-    </script>
+          window.location.href = 'dashboard.html';
+      } catch (error) {
+          console.error(error);
+          message.innerHTML = `<div class="alert p-2 text-danger" role="alert" style="font-size:small">*Google sign-in failed. Please try again.</div>`;
+          setTimeout(() => { message.innerHTML = ''; }, 3000);
+      }
+  };
+
+// PASSWORD TOGGLE 
+  const toggleIcon = document.querySelector('.password-toggle');
+  const passwordInput = document.getElementById('floatingPassword');
+
+  toggleIcon.addEventListener('click', function () {
+      passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+  });
+
+  // PIN LOGIC
+  const createInputs = document.querySelectorAll('.create-pin-inputs .input-box');
+  const confirmInputs = document.querySelectorAll('.confirm-pin-inputs .input-box');
+  const createPinBtn = document.getElementById('createPinBtn');
+
+  createPinBtn.disabled = true;
+
+  function getPinValue(inputs) {
+      return Array.from(inputs).map(i => i.value).join('');
+  }
+
+  function checkPinsReady() {
+      const createPin = getPinValue(createInputs);
+      const confirmPin = getPinValue(confirmInputs);
+      createPinBtn.disabled = !(createPin.length === 4 && confirmPin.length === 4);
+  }
+
+  function setupPinRow(inputs) {
+      inputs.forEach((input) => {
+          input.addEventListener('input', (e) => {
+              e.target.value = e.target.value.replace(/[^0-9]/g, '');
+              if (e.target.value && input.nextElementSibling) {
+                  input.nextElementSibling.focus();
+              }
+              checkPinsReady();
+          });
+
+          input.addEventListener('keydown', (e) => {
+              if (e.key === 'Backspace' && !input.value && input.previousElementSibling) {
+                  input.previousElementSibling.focus();
+              }
+          });
+      });
+  }
+
+  setupPinRow(createInputs);
+  setupPinRow(confirmInputs);
+
+  createPinBtn.addEventListener('click', () => {
+      const createPin = getPinValue(createInputs);
+      const confirmPin = getPinValue(confirmInputs);
+
+      if (createPin !== confirmPin) {
+          confirmInputs.forEach(input => {
+              input.style.borderColor = 'red';
+              input.classList.add('shake');
+          });
+          pinError.textContent = 'PINs do not match. Please try again.';
+
+          setTimeout(() => {
+              confirmInputs.forEach(input => {
+                  input.style.borderColor = '#b3b8c4';
+                  input.classList.remove('shake');
+              });
+              pinError.textContent = '';
+          }, 1500);
+          return;
+      }
+      else {
+          confirmInputs.forEach(input => {
+              input.style.borderColor = 'green';
+          });
+          pinSuccess.textContent = 'PIN successfully created';
+
+          setTimeout(() => {
+              confirmInputs.forEach(input => {
+                  input.style.borderColor = '#b3b8c4';
+              });
+              pinSuccess.textContent = '';
+          }, 1500);
+          window.location.href='verifybvn.html'
+      }
+  });
+</script>
 </body>
 
 </html>
