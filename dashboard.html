@@ -34,7 +34,7 @@
             d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
         </svg>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-          <li><a class="dropdown-item" href="#">My Profile</a></li>
+          <li><a class="dropdown-item" href="#" onclick="showPage('profile', 'MY PROFILE', this)">My Profile</a></li>
           <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
         </ul>
       </div>
@@ -83,6 +83,64 @@
       <button class="tab-btn active" onclick="switchTab('home', this)">Home</button>
       <button class="tab-btn" onclick="switchTab('portfolio', this)">Portfolio</button>
     </div>
+
+    <!-- PROFILE PAGE -->
+    <div class="page-section d-none" id="page-profile">
+
+      <div class="profile-header d-flex align-items-center gap-3 mb-4">
+        <img src="Images/profile.svg" alt="Profile" class="profile-avatar">
+        <div>
+          <h5 class="fw-bold mb-0" id="profileName">—</h5>
+          <p class="text-muted mb-0" style="font-size: 0.85rem;" id="profileEmail"></p>
+        </div>
+      </div>
+
+      <div class="profile-card mb-4">
+        <h6 class="fw-bold mb-3">Personal Information</h6>
+
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Full Name</span>
+          <span class="profile-value" id="profileFullName">—</span>
+        </div>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Email Address</span>
+          <span class="profile-value" id="profileEmailValue">—</span>
+        </div>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Phone Number</span>
+          <span class="profile-value" id="profilePhone">—</span>
+        </div>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Date of Birth</span>
+          <input type="date" class="profile-value border-0 text-end" id="profileDob"
+            style="background:transparent; max-width: 140px;">
+        </div>
+
+        <button class="pill-btn mt-3">Edit Profile</button>
+      </div>
+
+      <div class="profile-card mb-4">
+        <h6 class="fw-bold mb-3">Verification</h6>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">KYC Status</span>
+          <span class="profile-badge profile-badge-pending">Pending</span>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <h6 class="fw-bold mb-3">Security</h6>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Transaction PIN</span>
+          <a href="#" class="profile-action">Change PIN</a>
+        </div>
+        <div class="profile-row d-flex justify-content-between align-items-center">
+          <span class="profile-label">Password</span>
+          <a href="#" class="profile-action">Change Password</a>
+        </div>
+      </div>
+
+    </div>
+    <!-- PROFILE PAGE -->
 
     <!-- HOME -->
     <div class="page-section" id="page-home">
@@ -701,6 +759,9 @@
   </div>
 
   </div>
+  <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"
+    id="bp-toggle-chat" style="border-radius: 50%; cursor: pointer;">
+
 
   <script src="dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
@@ -709,7 +770,7 @@
   <!-- LOG OUT  -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-    import { getAuth, signOut,onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
@@ -726,6 +787,28 @@
     onAuthStateChanged(auth, (user) => {
       if (!user) {
         window.location.href = 'login.html';
+      }
+
+      const displayName = user.displayName || localStorage.getItem('firstName') || 'there';
+      const email = user.email || '';
+      const phone = localStorage.getItem('phone') || '—';
+      const dob = localStorage.getItem('dob') || '';
+
+      document.getElementById('profileName').textContent = displayName;
+      document.getElementById('profileFullName').textContent = displayName;
+      document.getElementById('profileEmail').textContent = email;
+      document.getElementById('profileEmailValue').textContent = email;
+      document.getElementById('profilePhone').textContent = phone;
+      document.getElementById('profileDob').value = dob;
+    });
+
+    document.getElementById('profileDob').addEventListener('change', (e) => {
+      localStorage.setItem('dob', e.target.value);
+    });
+
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        window.location.reload();
       }
     });
 
@@ -750,6 +833,8 @@
     style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#f4f7fa; z-index:9999; justify-content:center; align-items:center; padding:20px;">
     <img src="Images/cowrywisegif.gif" alt="Logging out" style="width: clamp(120px, 40vw, 250px); height: auto;">
   </div>
+  <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2026/07/12/11/20260712115230-1RF19MCK.js" defer></script>
 </body>
 
 </html>

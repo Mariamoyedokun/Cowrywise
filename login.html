@@ -156,6 +156,12 @@
     75% { transform: translateX(5px); }
 }
 .shake { animation: shake 0.3s ease; }
+
+@media (max-width: 767px) {
+    .jumpcontent{
+        margin-top: 50px !important;
+    }
+}
     </style>
 </head>
 
@@ -170,7 +176,7 @@
 
         <div class="row align-items-center content-wrapper mb-5">
 
-            <div class="col-lg-5 col-md-6 text-center text-md-start mb-5"
+            <div class="col-lg-5 col-md-6 text-center text-md-start mb-5 jumpcontent"
                 style="margin-top: -40px; margin-left: -50px;">
                 <h1 style="color: #0a2e65; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: bold;">Jump right in</h1>
                 <h2 style="color: #adbacd; font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: bold; margin-top: 10px;">
@@ -308,7 +314,7 @@
         </div>
     </div>
 
-    <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"
+    <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"  id="bp-toggle-chat"
         style="border-radius: 50%; cursor: pointer;">
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -490,6 +496,8 @@ window.signIn = async function () {
       }
   });
 </script>
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/07/12/11/20260712115230-1RF19MCK.js" defer></script>
 </body>
 
 </html>

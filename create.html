@@ -103,6 +103,13 @@
             width: 640px;
         }
 
+        @media (max-width:991px) {
+            .content-card {
+                width: 100%;
+                max-width: 640px;
+            }
+        }
+
         @media (max-width: 768px) {
             .content-card {
                 padding: 25px 20px;
@@ -167,19 +174,22 @@
                 padding-left: 15px;
                 padding-top: 15px;
             }
-            #floatingPassword{
+
+            #floatingPassword {
                 width: 260px;
             }
-            #hiddenInput{
+
+            #hiddenInput {
                 width: 260px;
             }
         }
 
-         @media (max-width: 767px) {
-            #floatingPassword{
+        @media (max-width: 767px) {
+            #floatingPassword {
                 width: 260px;
             }
-            #hiddenInput{
+
+            #hiddenInput {
                 width: 260px;
             }
         }
@@ -433,11 +443,11 @@
                         <p class="text-muted" style="font-weight: 600; font-size: small;">By tapping on Create Account,
                             you agree to our <span style="color: #0014f5;">Terms and Conditions</span> and <span
                                 style="color: #0014f5;">Privacy Policy</span></p>
-                                <div id="createAccountError"></div>
+                        <div id="createAccountError"></div>
                     </div>
 
                     <button type="button" onclick="createAccount()" class="btn btn-primary" id="checkBtn"
-                        style="margin-left: 340px; width: 200px;" disabled>Create
+                        style="width: 200px; max-width: 100%; margin-top: 20px;" disabled>Create
                         Account</button>
                 </div>
 
@@ -480,99 +490,106 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
-    authDomain: "cowrywise-clone.firebaseapp.com",
-    projectId: "cowrywise-clone",
-    storageBucket: "cowrywise-clone.firebasestorage.app",
-    messagingSenderId: "940816539570",
-    appId: "1:940816539570:web:59529e90f09db5343eceab"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
+        authDomain: "cowrywise-clone.firebaseapp.com",
+        projectId: "cowrywise-clone",
+        storageBucket: "cowrywise-clone.firebasestorage.app",
+        messagingSenderId: "940816539570",
+        appId: "1:940816539570:web:59529e90f09db5343eceab"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  // --- password toggle ---
-  const toggleIcon = document.querySelector('.password-toggle');
-  const passwordInput = document.getElementById('floatingPassword');
+    // --- password toggle ---
+    const toggleIcon = document.querySelector('.password-toggle');
+    const passwordInput = document.getElementById('floatingPassword');
 
-  toggleIcon.addEventListener('click', function () {
-    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
-  });
+    toggleIcon.addEventListener('click', function () {
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    });
 
-  // --- invite code toggle ---
-  window.showInput = function () {
-    const showButton = document.getElementById('showValue');
-    const hiddenInput = document.getElementById("hiddenInput");
-    hiddenInput.setAttribute("class", "d-inline form-floating p-3 input-field-full-responsive mt-4");
-    showButton.setAttribute('class', 'd-none');
-  };
+    // --- invite code toggle ---
+    window.showInput = function () {
+        const showButton = document.getElementById('showValue');
+        const hiddenInput = document.getElementById("hiddenInput");
+        hiddenInput.setAttribute("class", "d-inline form-floating p-3 input-field-full-responsive mt-4");
+        showButton.setAttribute('class', 'd-none');
+    };
 
-  // --- halal info modal ---
-  const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
-  document.getElementById('infoBtn').addEventListener('click', () => {
-    infoModal.show();
-  });
+    // --- halal info modal ---
+    const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+    document.getElementById('infoBtn').addEventListener('click', () => {
+        infoModal.show();
+    });
 
-  // --- prefill email from sign-up.html ---
-  document.addEventListener('DOMContentLoaded', () => {
-    const savedValue = localStorage.getItem('sharedValue');
-    if (savedValue) {
-      const parts = savedValue.split('@');
-      document.getElementById('email').value = "@" + parts[0];
+    // --- prefill email from sign-up.html ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedValue = localStorage.getItem('sharedValue');
+        if (savedValue) {
+            const parts = savedValue.split('@');
+            document.getElementById('email').value = "@" + parts[0];
+        }
+    });
+
+    // --- enable Create Account button once all fields are filled ---
+    const inputs = document.querySelectorAll('input:not(#hiddenInput)');
+    const btn = document.getElementById('checkBtn');
+
+    function checkInputs() {
+        const allFilled = [...inputs].every(input => input.value.trim() !== '');
+        btn.disabled = !allFilled;
     }
-  });
+    inputs.forEach(input => input.addEventListener('input', checkInputs));
 
-  // --- enable Create Account button once all fields are filled ---
-  const inputs = document.querySelectorAll('input:not(#hiddenInput)');
-  const btn = document.getElementById('checkBtn');
+    // --- create account with Firebase ---
+    window.createAccount = async function () {
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const phone = document.getElementById('phone').value;
+        const email = localStorage.getItem('sharedValue');
+        const password = document.getElementById('floatingPassword').value;
+        const errorBox = document.getElementById('createAccountError');
 
-  function checkInputs() {
-    const allFilled = [...inputs].every(input => input.value.trim() !== '');
-    btn.disabled = !allFilled;
-  }
-  inputs.forEach(input => input.addEventListener('input', checkInputs));
-
-  // --- create account with Firebase ---
-  window.createAccount = async function () {
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = localStorage.getItem('sharedValue');
-    const password = document.getElementById('floatingPassword').value;
-    const errorBox = document.getElementById('createAccountError');
-
-    errorBox.innerHTML = '';
-    btn.disabled = true;
-    btn.textContent = 'Creating account...';
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-      localStorage.setItem('firstName', firstName);
-      localStorage.setItem('lastName', lastName);
-      localStorage.setItem('walletBalance', 0);
-
-      window.location.href = 'welcome.html';
-    } catch (error) {
-      let message = 'Something went wrong. Please try again.';
-
-      if (error.code === 'auth/email-already-in-use') {
-        message = 'That email is already registered. Try logging in instead.';
-      } else if (error.code === 'auth/weak-password') {
-        message = 'Password should be at least 6 characters.';
-      }
-
-      errorBox.innerHTML = `<div class="alert p-2 text-danger text-center bg-danger-subtle border-danger" role="alert" style="font-size:small; margin-top: 10px;">*${message}</div>`;
-      setTimeout(() => {
         errorBox.innerHTML = '';
-      }, 3000);
+        btn.disabled = true;
+        btn.textContent = 'Creating account...';
 
-      btn.disabled = false;
-      btn.textContent = 'Create Account';
-    }
-  };
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+            await updateProfile(userCredential.user, {
+                displayName: `${firstName} ${lastName}`
+            });
+
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('phone', phone);
+            localStorage.setItem('walletBalance', 0);
+
+            window.location.href = 'welcome.html';
+        } catch (error) {
+            let message = 'Something went wrong. Please try again.';
+
+            if (error.code === 'auth/email-already-in-use') {
+                message = 'That email is already registered. Try logging in instead.';
+            } else if (error.code === 'auth/weak-password') {
+                message = 'Password should be at least 6 characters.';
+            }
+
+            errorBox.innerHTML = `<div class="alert p-2 text-danger text-center bg-danger-subtle border-danger" role="alert" style="font-size:small; margin-top: 10px;">*${message}</div>`;
+            setTimeout(() => {
+                errorBox.innerHTML = '';
+            }, 3000);
+
+            btn.disabled = false;
+            btn.textContent = 'Create Account';
+        }
+    };
 </script>
+
 </html>

@@ -230,6 +230,9 @@
             .footer-row {
                 padding: 15px 10px;
             }
+            .marketing-content{
+                display: none;
+            }
         }
 
         .sec-text {
@@ -240,14 +243,16 @@
             gap: 8px;
         }
 
-        .floating-icon {
+         .cowrywise-float {
             position: fixed;
-            bottom: 30px;
-            right: 40px;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
+            bottom: 20px;
+            right: 20px;
+            transition: transform 0.3s ease;
             z-index: 10;
+        }
+
+        .cowrywise-float:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -309,7 +314,8 @@
         </div>
     </main>
 
-    <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" class="floating-icon" alt="chat">
+     <img src="Images/imgi_1_a5971d1b1fbb04e757204fbf07553916.png" alt="" width="45" class="cowrywise-float"  id="bp-toggle-chat"
+        style="border-radius: 50%; cursor: pointer;">
 
     <footer class="footer-row d-flex justify-content-around align-items-center">
         <div class="sec-text">
@@ -321,71 +327,74 @@
         </div>
     </footer>
 
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/07/12/11/20260712115230-1RF19MCK.js" defer></script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
-    authDomain: "cowrywise-clone.firebaseapp.com",
-    projectId: "cowrywise-clone",
-    storageBucket: "cowrywise-clone.firebasestorage.app",
-    messagingSenderId: "940816539570",
-    appId: "1:940816539570:web:59529e90f09db5343eceab"
-  };
+    const firebaseConfig = {
+        apiKey: "AIzaSyCI-1uKmreIqbWxvm97Yq0ltgKpLmLXix0",
+        authDomain: "cowrywise-clone.firebaseapp.com",
+        projectId: "cowrywise-clone",
+        storageBucket: "cowrywise-clone.firebasestorage.app",
+        messagingSenderId: "940816539570",
+        appId: "1:940816539570:web:59529e90f09db5343eceab"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const googleProvider = new GoogleAuthProvider();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
 
-  window.signUp = function () {
-    const mail = document.getElementById('email').value
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    window.signUp = function () {
+        const mail = document.getElementById('email').value
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    localStorage.setItem('sharedValue', mail)
-    if (mail === '') {
-        display.innerHTML = `<div class= "alert p-2 text-danger text-left" role="alert" style="font-size:small">*Please fill in the empty input!</div>`
-        setTimeout(() => {
-            display.style.display = 'none'
-        }, 1500);
+        localStorage.setItem('sharedValue', mail)
+        if (mail === '') {
+            display.innerHTML = `<div class= "alert p-2 text-danger text-left" role="alert" style="font-size:small">*Please fill in the empty input!</div>`
+            setTimeout(() => {
+                display.style.display = 'none'
+            }, 1500);
+        }
+        else if (!emailPattern.test(mail)) {
+            displayEmail.innerHTML = `<div class= "alert p-2 text-danger text-left" role="alert" style="font-size:small">*Please use a valid format!</div>`
+            setTimeout(() => {
+                displayEmail.style.display = 'none'
+            }, 1500);
+        }
+        else {
+            window.location.href = 'verify.html'
+        }
     }
-    else if (!emailPattern.test(mail)) {
-        displayEmail.innerHTML = `<div class= "alert p-2 text-danger text-left" role="alert" style="font-size:small">*Please use a valid format!</div>`
-        setTimeout(() => {
-            displayEmail.style.display = 'none'
-        }, 1500);
-    }
-    else {
-        window.location.href = 'verify.html'
-    }
-  }
 
-  window.signUpWithGoogle = async function () {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      const user = result.user;
+    window.signUpWithGoogle = async function () {
+        try {
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
 
-      const nameParts = (user.displayName || "").split(" ");
-      const firstName = nameParts[0] || "";
-      const lastName = nameParts.slice(1).join(" ") || "";
+            const nameParts = (user.displayName || "").split(" ");
+            const firstName = nameParts[0] || "";
+            const lastName = nameParts.slice(1).join(" ") || "";
 
-      localStorage.setItem('firstName', firstName);
-      localStorage.setItem('lastName', lastName);
-      localStorage.setItem('sharedValue', user.email);
-      localStorage.setItem('walletBalance', 0);
+            localStorage.setItem('firstName', firstName);
+            localStorage.setItem('lastName', lastName);
+            localStorage.setItem('sharedValue', user.email);
+            localStorage.setItem('walletBalance', 0);
 
-      window.location.href = 'welcome.html';
-    } catch (error) {
-        console.error('Full error:', error);
-  console.error('Error code:', error.code);
-  console.error('Error message:', error.message);
-      display.innerHTML = `<div class="alert p-2 text-danger text-left" role="alert" style="font-size:small">*Google sign-up failed. Please try again.</div>`;
-      setTimeout(() => {
-        display.innerHTML = '';
-      }, 3000);
-    }
-  };
+            window.location.href = 'welcome.html';
+        } catch (error) {
+            console.error('Full error:', error);
+            console.error('Error code:', error.code);
+            console.error('Error message:', error.message);
+            display.innerHTML = `<div class="alert p-2 text-danger text-left" role="alert" style="font-size:small">*Google sign-up failed. Please try again.</div>`;
+            setTimeout(() => {
+                display.innerHTML = '';
+            }, 3000);
+        }
+    };
 </script>
+
 </html>
