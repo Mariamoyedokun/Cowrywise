@@ -6,3 +6,9 @@ confetti({
     velocity: 200,		
     fade: false			
 });
+function goTo(url) {
+    document.getElementById('successOverlay').classList.add('active');
+    setTimeout(() => {
+        window.location.href = url;
+    }, 2000);
+}

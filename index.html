@@ -110,8 +110,8 @@
         </ul>
 
         <div class="d-flex align-items-center gap-3 mt-2 mt-lg-0">
-          <a href="login.html" target="_blank" class="login-link">Log in</a>
-          <a href="signup.html" target="_blank" class="btn-cw-signup">Sign up free</a>
+          <a href="#"  onclick="goTo('login.html'); return false;" class="login-link">Log in</a>
+          <a href="#"  onclick="goTo('signup.html'); return false;" class="btn-cw-signup">Sign up free</a>
         </div>
 
       </div>
@@ -316,18 +316,18 @@
           <p class="text-muted para2">If you invested <span class="deepcol">every month <img
                 src="Images/dropdowntoggle.svg" alt=""></span> <span class="deepcol" style="margin-left: 8px;"> 3 years
               ago <img src="Images/dropdowntoggle.svg" alt=""></span></p>
-              <div class="d-flex amount">
-                <div>
-                  <label for="number" class="label2"
-                    style="color: white; margin-left: 30px; font-size: 40px; font-weight: bold; margin-top: 95px;">100,000</label>
-                  <input type="number" class="input2" readonly style="outline: none;">
-                </div>
+          <div class="d-flex amount">
+            <div>
+              <label for="number" class="label2"
+                style="color: white; margin-left: 30px; font-size: 40px; font-weight: bold; margin-top: 95px;">100,000</label>
+              <input type="number" class="input2" readonly style="outline: none;">
+            </div>
 
-                <select name="currency" id="slt">
+            <select name="currency" id="slt">
               <option value="">Naira</option>
               <option value="">Dollar</option>
             </select>
-              </div>
+          </div>
         </div>
 
         <div class="moneycard2 d-flex" onclick="confetti()">
@@ -576,6 +576,9 @@
       </div>
     </div>
   </footer>
+  <div id="successOverlay">
+    <img src="Images/cowrywisegif.gif" alt="Cowrywise">
+  </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="script.js"></script>
