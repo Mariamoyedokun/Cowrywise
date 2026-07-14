@@ -56,7 +56,8 @@
         Nest</a>
       <a href="#" onclick="showPage('payment', 'PAYMENT', this)"><img src="Images/sidebar-payment.svg" alt="payment"
           width="22"> Payment</a>
-      <a href="#" onclick="showPage('stash', 'STASH', this)"><img src="Images/sidebar-stash.svg" alt="stash" width="22">
+      <a href="#" onclick="showPage('stash', 'NAIRA STASH', this)"><img src="Images/sidebar-stash.svg" alt="stash"
+          width="22">
         Stash</a>
       <a href="#" onclick="showPage('learn', 'EXPLORE', this)"><img src="Images/sidebar-learn.svg" alt="learn"
           width="22">
@@ -495,13 +496,6 @@
     </div>
     <!-- INVEST PAGE  -->
 
-    <!-- NEST PAGE  -->
-    <div class="page-section d-none" id="page-nest">
-      <h5 class="fw-bold mb-3">Nest</h5>
-      <p class="text-muted">Coming soon.</p>
-    </div>
-    <!-- NEST PAGE  -->
-
     <!-- PAYMENT PAGE  -->
     <div class="page-section d-none" id="page-payment">
       <div class="d-flex justify-content-between">
@@ -529,10 +523,54 @@
     </div>
     <!-- PAYMENT PAGE  -->
 
+    <!-- STASH PAGE  -->
     <div class="page-section d-none" id="page-stash">
-      <h5 class="fw-bold mb-3">Stash</h5>
-      <p class="text-muted">Coming soon.</p>
+      <div class="savetopcontent d-flex">
+        <p class=" mb-3 text-secondary">Naira Balance</p>
+        <div class="balance-amount mt-4" style="margin-left: -100px;">
+          <span class="naira">₦</span><span id="balanceAmount">0</span><span class="decimal"
+            id="balanceDecimal">.00</span>
+        </div>
+      </div>
+
+      <h6 class="fw-bold mt-5 mb-3">Fund via bank transfer</h6>
+      <div class="stashbox border border-light-subtle  w-100 w-md-50 w-lg-25 p-3">
+        <p class="fw-bold"><img
+            src="https://play-lh.googleusercontent.com/TWQMqopkn2jDWuFP0RyGJqp3b0zuouFGKH9znHGyPScLcFZazvRd0p6J5jdJ75yYv_N8AlUWqboGqFKljyek9Q=w240-h480-rw"
+            alt="" width="20" style="border-radius: 20px;"> Nombank MFB</p>
+        <hr style="color: #d9ddf0;">
+
+        <div class="d-flex acctdetails justify-content-between">
+          <div>
+            <p id="acctNumber" class="fw-bold">1234567890</p>
+            <p id="acctName"  style="margin-top: -15px;">Oyewole</p>
+          </div>
+          <div class="copybutton mt-2">
+           <button class="border-0 rounded-4" onclick="copyText(event, 'the text to copy')"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-copy"
+              viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+            </svg></button>
+          </div>
+        </div>
+      </div>
+      <p class="text-secondary">Incurs a 1.5% fee capped at ₦250</p>
+
+      <div>
+        <p class="fw-bold mt-4">What would you like to do?</p>
+        <div class="row gap-3">
+          <div class="col-6 stashbox1 mt-2">
+            <img src="Images/savingsarrow.svg" alt="" width="40">
+            <p class="fw-bold mt-3">Fund Stash</p>
+          </div>
+          <div class="col-6 stashbox1 mt-2">
+            <img src="Images/savingsarrow.svg" alt="" width="40">
+            <p class="fw-bold mt-3">Save my money</p>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- STASH PAGE  -->
 
     <!-- LEARN PAGE  -->
     <div class="page-section d-none" id="page-learn">

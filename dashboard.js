@@ -85,3 +85,11 @@ window.onload = function() {
   document.getElementById("greetingWord").textContent = randomGreeting;
   document.getElementById("greetingName").textContent = firstName;
 };
+
+function copyText(event, text){
+  navigator.clipboard.writeText(text);
+  const btn = event.currentTarget;
+  const original = btn.innerHTML;
+  // btn.innerHTML = '<i class="bi bi-check2"></i>'; 
+  alert('Successfully Copied')
+}

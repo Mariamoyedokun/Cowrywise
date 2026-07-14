@@ -898,13 +898,25 @@ body {
   background: #dcf0dc;
   color: #2e7d32;
 }
- .cowrywise-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            transition: transform 0.3s ease;
-        }
 
-        .cowrywise-float:hover {
-            transform: scale(1.2);
-        }
+.cowrywise-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.cowrywise-float:hover {
+  transform: scale(1.2);
+}
+
+.stashbox{
+  width: 100%;
+  max-width: 420px;
+}
+.stashbox1{
+  background-color: #faf7f7;
+  width: 170px;
+  padding: 15px;
+  border-radius: 10px;
+}
